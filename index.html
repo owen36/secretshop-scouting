@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secretshop League — Scouting Dashboard</title>
+<style>
+  :root{
+    color-scheme: dark;
+    --surface-1:#1a1a19; --plane:#0d0d0d;
+    --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --baseline:#383835;
+    --border:rgba(255,255,255,0.10);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+    --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+    --card:#212120; --chip:#2a2a28;
+  }
+  :root[data-theme="light"]{
+    color-scheme: light;
+    --surface-1:#fcfcfb; --plane:#f4f4f1;
+    --text-primary:#0b0b0b; --text-secondary:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --baseline:#c3c2b7;
+    --border:rgba(11,11,11,0.10);
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+    --s5:#e87ba4; --s6:#008300; --s7:#4a3aa7; --s8:#e34948;
+    --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+    --card:#ffffff; --chip:#efeeea;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--plane); color:var(--text-primary);
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:15px; line-height:1.5;
+  }
+  a{color:var(--s1)}
+  .wrap{max-width:1180px; margin:0 auto; padding:22px 20px 80px}
+  header.top{display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 16px; margin-bottom:6px}
+  h1{font-size:24px; margin:0; letter-spacing:-0.01em}
+  .sub{color:var(--text-secondary); font-size:14px}
+  .toolbar{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:16px 0 22px}
+  .seg{display:inline-flex; background:var(--chip); border:1px solid var(--border); border-radius:10px; padding:3px; gap:2px}
+  .seg button{
+    border:0; background:transparent; color:var(--text-secondary);
+    font:inherit; font-size:13.5px; font-weight:600; padding:7px 13px; border-radius:8px; cursor:pointer;
+    white-space:nowrap;
+  }
+  .seg button.active{background:var(--s1); color:#fff}
+  :root[data-theme="light"] .seg button.active{color:#fff}
+  .spacer{flex:1 1 auto}
+  .ghost{
+    border:1px solid var(--border); background:var(--card); color:var(--text-secondary);
+    font:inherit; font-size:13px; font-weight:600; padding:7px 12px; border-radius:8px; cursor:pointer;
+  }
+  .ghost:hover{color:var(--text-primary)}
+  .ghost.on{background:var(--warning); color:#1a1a19; border-color:var(--warning)}
+  select.sel{cursor:pointer; padding-right:26px; max-width:220px}
+  .hero-search{display:flex; align-items:center; gap:12px; margin:0 0 12px}
+  .hero-search input{
+    flex:0 1 320px; background:var(--card); color:var(--text-primary);
+    border:1px solid var(--border); border-radius:8px; padding:8px 12px; font:inherit; font-size:13.5px;
+  }
+  .hero-search input:focus{outline:none; border-color:var(--s1)}
+  .search-count{color:var(--muted); font-size:12.5px}
+
+  .tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:26px}
+  .tile{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px 16px}
+  .tile .v{font-size:30px; font-weight:700; letter-spacing:-0.02em; line-height:1.05}
+  .tile .k{color:var(--muted); font-size:12.5px; margin-top:3px; text-transform:uppercase; letter-spacing:0.04em}
+
+  section{margin:30px 0}
+  h2{font-size:17px; margin:0 0 3px; letter-spacing:-0.01em}
+  .h-note{color:var(--muted); font-size:13px; margin:0 0 14px}
+
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media(max-width:820px){.two-col{grid-template-columns:1fr}}
+
+  .panel{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px}
+  .panel h3{margin:0 0 12px; font-size:14px; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary)}
+
+  .hero-row{display:grid; grid-template-columns:130px 1fr 92px; align-items:center; gap:10px; padding:5px 0}
+  .hero-row .nm{font-size:13.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .bar-track{height:16px; background:var(--chip); border-radius:5px; position:relative; overflow:hidden}
+  .bar-fill{height:100%; border-radius:5px}
+  .hero-row .meta{font-size:12.5px; color:var(--text-secondary); text-align:right; font-variant-numeric:tabular-nums}
+
+  table{width:100%; border-collapse:collapse; font-size:13.5px}
+  th,td{text-align:left; padding:8px 10px; border-bottom:1px solid var(--grid)}
+  th{color:var(--muted); font-size:11.5px; text-transform:uppercase; letter-spacing:0.04em; cursor:pointer; user-select:none; white-space:nowrap}
+  th.sorted::after{content:" ▾"; color:var(--s1)}
+  th.sorted.asc::after{content:" ▴"}
+  td.num,th.num{text-align:right; font-variant-numeric:tabular-nums}
+  tbody tr:hover{background:var(--chip)}
+  .pill{display:inline-block; padding:1px 7px; border-radius:20px; font-size:11.5px; font-weight:600; font-variant-numeric:tabular-nums}
+  .pill.good{background:color-mix(in srgb,var(--good) 22%,transparent); color:var(--good)}
+  .pill.bad{background:color-mix(in srgb,var(--critical) 22%,transparent); color:var(--critical)}
+  .pill.mid{background:var(--chip); color:var(--text-secondary)}
+
+  .teams{display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:16px}
+  .tcard{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:15px 16px}
+  .tcard.mine{border-color:var(--s1); box-shadow:0 0 0 1px var(--s1) inset}
+  .tcard .thead{display:flex; align-items:baseline; justify-content:space-between; gap:8px; margin-bottom:2px}
+  .tcard .tname{font-size:16px; font-weight:700; letter-spacing:-0.01em}
+  .tcard .trec{font-size:13px; color:var(--text-secondary); font-variant-numeric:tabular-nums; white-space:nowrap}
+  .tcard .ttag{font-size:11px; color:var(--muted); margin-bottom:11px}
+  .tcard .tag-mine{color:var(--s1); font-weight:700}
+  .tcard .tag-opp{color:var(--s2); font-weight:700}
+
+  .plr{padding:8px 0; border-top:1px solid var(--grid)}
+  .plr:first-of-type{border-top:0}
+  .plr .pl-top{display:flex; align-items:baseline; justify-content:space-between; gap:8px}
+  .plr .pl-name{font-weight:600; font-size:13.5px}
+  .plr .pl-name .star{color:var(--warning)}
+  .plr .pl-key{font-size:10.5px; font-weight:700; color:var(--warning); border:1px solid color-mix(in srgb,var(--warning) 45%,transparent); border-radius:5px; padding:0 5px; margin-left:6px}
+  .plr .pl-rt{font-size:12.5px; color:var(--text-secondary); font-variant-numeric:tabular-nums}
+  .plr .pl-games{margin-top:4px; display:flex; flex-wrap:wrap; gap:5px}
+  .g-chip{font-size:11.5px; background:var(--chip); border-radius:6px; padding:2px 7px; white-space:nowrap; font-variant-numeric:tabular-nums}
+  .g-chip.win{box-shadow:inset 2px 0 0 var(--good)}
+  .g-chip.loss{box-shadow:inset 2px 0 0 var(--critical)}
+  .g-chip .kda{color:var(--text-secondary)}
+  .tpool{margin-top:11px; padding-top:10px; border-top:1px solid var(--grid); font-size:12px; color:var(--text-secondary); line-height:1.55}
+  .tpool b{color:var(--muted); font-weight:600}
+  .pos-tag{font-size:10.5px; font-weight:700; color:var(--s1); border:1px solid color-mix(in srgb,var(--s1) 40%,transparent); border-radius:5px; padding:0 5px; margin-right:6px; letter-spacing:0.02em}
+  .sub-tag{font-size:10px; font-weight:700; color:var(--warning); border:1px solid color-mix(in srgb,var(--warning) 45%,transparent); border-radius:5px; padding:0 5px; margin-left:6px; letter-spacing:0.03em}
+  .plr.standin{opacity:0.85}
+  .plr.standin .pl-name{color:var(--text-secondary)}
+  .g-chip.sub{border:1px dashed color-mix(in srgb,var(--warning) 55%,transparent)}
+  .hero-sub{font-size:10px; font-weight:700; color:var(--warning); margin-left:7px; border:1px solid color-mix(in srgb,var(--warning) 40%,transparent); border-radius:4px; padding:0 4px}
+  .standin-head{margin:12px 0 2px; font-size:11px; text-transform:uppercase; letter-spacing:0.05em; color:var(--warning); font-weight:700; padding-top:9px; border-top:1px dashed var(--grid)}
+
+  details.data{margin-top:26px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:0 16px}
+  details.data summary{cursor:pointer; padding:14px 0; font-weight:600; font-size:14px; list-style:none}
+  details.data summary::-webkit-details-marker{display:none}
+  details.data summary::before{content:"▸ "; color:var(--muted)}
+  details.data[open] summary::before{content:"▾ "}
+  textarea{
+    width:100%; min-height:220px; resize:vertical; margin:6px 0 12px;
+    background:var(--plane); color:var(--text-primary); border:1px solid var(--border);
+    border-radius:8px; padding:11px 12px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px; line-height:1.45;
+  }
+  .data-actions{display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding-bottom:16px}
+  .btn-primary{border:0; background:var(--s1); color:#fff; font:inherit; font-weight:600; font-size:13.5px; padding:8px 15px; border-radius:8px; cursor:pointer}
+  .data-msg{font-size:13px; color:var(--muted)}
+  .legend-note{font-size:12px; color:var(--muted); margin-top:8px; display:flex; flex-wrap:wrap; gap:14px}
+  .legend-note span{display:inline-flex; align-items:center; gap:5px}
+  .dot{width:9px;height:9px;border-radius:2px;display:inline-block}
+  .empty{color:var(--muted); font-size:13px; padding:8px 0}
+  footer{margin-top:40px; color:var(--muted); font-size:12px; border-top:1px solid var(--grid); padding-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Secretshop League — Scouting</h1>
+    <span class="sub" id="daterange">Herald Royale with Cheese · opponent intel</span>
+  </header>
+
+  <div class="toolbar">
+    <div class="seg" id="scope">
+      <button data-scope="opps" class="active">My 5 opponents</button>
+      <button data-scope="team">Team deep-dive</button>
+      <button data-scope="herald">Herald (us)</button>
+      <button data-scope="all">Whole league</button>
+    </div>
+    <select id="teamSelect" class="ghost sel" style="display:none"></select>
+    <button class="ghost" id="standinBtn" style="display:none">Stand-ins: off</button>
+    <span class="spacer"></span>
+    <button class="ghost" id="themeBtn">☀ Light</button>
+    <button class="ghost" id="dlBtn">⤓ Download updated</button>
+  </div>
+
+  <div class="tiles" id="tiles"></div>
+
+  <section>
+    <div class="two-col">
+      <div class="panel">
+        <h3 id="trendTitle">Trending heroes — winning picks</h3>
+        <div id="trending"></div>
+        <div class="legend-note" id="trendLegend"></div>
+      </div>
+      <div class="panel">
+        <h3 id="strugTitle">Struggling heroes — losing picks</h3>
+        <div id="struggling"></div>
+        <div class="legend-note" id="strugLegend"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="matchupSection" style="display:none">
+    <h2 id="matchupTitle">Matchups — heroes faced</h2>
+    <p class="h-note" id="matchupNote"></p>
+    <div class="two-col">
+      <div class="panel">
+        <h3 id="beatTitle">Heroes they beat</h3>
+        <div id="beatList"></div>
+        <div class="legend-note"><span><span class="dot" style="background:var(--good)"></span>enemy heroes in games they won · bar = times faced</span></div>
+      </div>
+      <div class="panel">
+        <h3 id="lostTitle">Heroes that beat them</h3>
+        <div id="lostList"></div>
+        <div class="legend-note"><span><span class="dot" style="background:var(--critical)"></span>enemy heroes in games they lost · bar = times faced</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Hero pick table</h2>
+    <p class="h-note" id="heroScopeNote"></p>
+    <div class="hero-search">
+      <input type="search" id="heroSearch" placeholder="Search hero name…" spellcheck="false" autocomplete="off">
+      <span class="search-count" id="heroCount"></span>
+    </div>
+    <div class="panel" style="padding-top:6px">
+      <table id="heroTable">
+        <thead><tr>
+          <th data-k="hero">Hero</th>
+          <th data-k="picks" class="num">Picks</th>
+          <th data-k="wins" class="num">W</th>
+          <th data-k="losses" class="num">L</th>
+          <th data-k="wr" class="num sorted">Win%</th>
+          <th data-k="rating" class="num">Avg rating</th>
+          <th data-k="kda" class="num">Avg K/D/A</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="teamsTitle">Opponent teams</h2>
+    <p class="h-note" id="teamsNote"></p>
+    <div class="teams" id="teams"></div>
+  </section>
+
+  <details class="data">
+    <summary>Add / update match data — paste future days here</summary>
+    <p class="data-msg">Paste new match blocks in the same format the league bot posts (they append to what's already here). Then press <b>Update</b> to recompute, and <b>Download updated</b> above to save one file with all days baked in.</p>
+    <textarea id="rawInput" spellcheck="false"></textarea>
+    <div class="data-actions">
+      <button class="btn-primary" id="updateBtn">Update dashboard</button>
+      <span class="data-msg" id="parseMsg"></span>
+    </div>
+  </details>
+
+  <footer id="foot"></footer>
+</div>
+
+<script id="raw-data" type="text/plain">
+Match 8951412271 parsed in league SecretLeague
+
+Glizzy Gladiators [L]
+FluffySandwich: Shadow Fiend 18/7/11  58.8 rating
+Bambohitter: Windranger 12/9/13  45.2 rating
+Heavy Cream: Underlord 2/6/26  48.8 rating
+tammyB: Hoodwink 7/11/25  42.8 rating
+euan: Spirit Breaker 0/21/25  17.4 rating
+
+Institutionalized Mentaly Ill Players [W]
+AidanBY: Lifestealer 11/4/19  54.8 rating
+VulGiuS: Ember Spirit 17/5/23  67.1 rating
+NEVER TOXIC PMA ONLY: Mars 13/5/31  74.1 rating
+Herr.Beist: Shadow Demon 4/12/31  55.5 rating
+Norge_Hallerino: Undying 9/13/36  63.0 rating
+Match 8951267316 parsed in league SecretLeague
+
+Herald Royale with Cheese [L]
+Static Raindrop: Spectre 5/6/8  33.8 rating
+白い空-: Invoker 4/8/7  18.2 rating
+Cynical: Dawnbreaker 4/5/7  32.0 rating
+A Lazy Bunny: Largo 1/4/10  39.6 rating
+Mollask: Vengeful Spirit 2/12/10  25.4 rating
+
+FarmVille [W]
+EbolaBear: Clinkz 12/1/10  80.7 rating
+akim: Necrophos 7/3/15  67.1 rating
+Chromozones: Mars 3/4/22  49.5 rating
+Luke: Snapfire 10/5/14  69.8 rating
+Karenlyl : Silencer 3/4/24  85.2 rating
+Match 8951272914 parsed in league SecretLeague
+
+The Dark Side of the Map [W]
+Click: Nature's Prophet 21/7/15  55.6 rating
+noah: Lina 8/5/18  43.3 rating
+LPANDA: Centaur Warrunner 8/0/22  93.7 rating
+Joker #YTIN: Shadow Shaman 9/6/28  84.7 rating
+Fergo: Treant Protector 2/4/32  80.6 rating
+
+Bortymites [L]
+Rat Lord: Lifestealer 3/8/4  14.8 rating
+Borty: Queen of Pain 4/11/7  11.1 rating
+StrongPants: Pangolier 6/10/11  32.8 rating
+Immoral: Lich 5/8/8  45.7 rating
+Bonk: Ringmaster 2/11/10  11.9 rating
+Match 8951264473 parsed in league SecretLeague
+
+Chutney Smugglers [L]
+Firing Blanks: Riki 17/10/5  36.0 rating
+Aeletzio: Gyrocopter 8/13/16  31.8 rating
+Butterlopper: Underlord 0/10/13  16.7 rating
+Mr Petchef: Rubick 5/6/19  57.9 rating
+Xania: Grimstroke 4/11/17  40.4 rating
+
+CATWICE [W]
+Pyro.png: Lifestealer 21/4/14  65.1 rating
+Lushless: Lina 9/8/21  38.8 rating
+RaTatouille: Night Stalker 9/7/27  43.8 rating
+certified turtle: Hoodwink 6/7/24  56.5 rating
+Scardrone: Techies 5/9/34  72.0 rating
+Match 8951277034 parsed in league SecretLeague
+
+N-stitution [W]
+espresso depresso: Luna 12/5/13  60.8 rating
+dekaiT: Void Spirit 9/4/19  56.8 rating
+TheArtOf: Slardar 2/12/18  31.3 rating
+Glimmy: Lion 6/13/12  21.2 rating
+FlukeY: Treant Protector 3/6/25  67.8 rating
+
+Midlands Massive [L]
+Dara.: Windranger 12/5/20  60.7 rating
+Polltegrais: Death Prophet 5/7/21  47.6 rating
+starzi: Dawnbreaker 12/5/15  68.6 rating
+BossMan: Hoodwink 7/8/20  59.1 rating
+Mev: Mirana 4/8/27  58.7 rating
+Match 8951269298 parsed in league SecretLeague
+
+No Sweat [W]
+Nobody's Perfect: Faceless Void 16/3/21  72.6 rating
+maia: Invoker 17/3/25  71.1 rating
+EmperorMonkey: Underlord 6/9/30  44.6 rating
+Maddie: Shadow Shaman 6/4/31  85.5 rating
+inky: Jakiro 4/8/22  63.2 rating
+
+D2Ire Rejects [L]
+pROMiKe (º•): Luna 14/8/8  40.8 rating
+Psycho Melendez: Rubick 8/9/18  51.4 rating
+Chipmonk: Centaur Warrunner 1/11/17  23.3 rating
+barjakun is back: Windranger 2/11/19  29.9 rating
+that normie kid: Treant Protector 1/11/18  32.4 rating
+Match 8951305506 parsed in league SecretLeague
+
+TaiLungs accountants [L]
+!o: Spectre 10/4/17  60.7 rating
+Hybird Theory: Void Spirit 13/7/14  45.9 rating
+HotBrushOfHell: Centaur Warrunner 3/10/22  39.0 rating
+JB^: Windranger 9/7/19  59.4 rating
+Punjabi: Enchantress 4/8/19  55.7 rating
+
+Ctrl Alt Defeat [W]
+Hansi ♥mann: Juggernaut 5/2/8  46.8 rating
+Ouros: Earthshaker 17/7/10  47.8 rating
+Barathrum: Phoenix 6/13/13  17.2 rating
+youleftthedooropen: Hoodwink 4/10/23  47.1 rating
+Alistair: Crystal Maiden 4/7/24  68.8 rating
+Match 8951305506 parsed in league SecretLeague
+
+TaiLungs accountants [L]
+!o: Spectre 10/4/17  60.7 rating
+Hybird Theory: Void Spirit 13/7/14  45.9 rating
+HotBrushOfHell: Centaur Warrunner 3/10/22  39.0 rating
+JB^: Windranger 9/7/19  59.4 rating
+Punjabi: Enchantress 4/8/19  55.7 rating
+
+Ctrl Alt Defeat [W]
+Hansi ♥mann: Juggernaut 5/2/8  46.8 rating
+Ouros: Earthshaker 17/7/10  47.8 rating
+Barathrum: Phoenix 6/13/13  17.2 rating
+youleftthedooropen: Hoodwink 4/10/23  47.1 rating
+Alistair: Crystal Maiden 4/7/24  68.8 rating
+Match 8951273555 parsed in league SecretLeague
+
+Glizzy Gladiators [W]
+FluffySandwich: Lifestealer 15/4/18  63.4 rating
+Bambohitter: Earth Spirit 11/5/39  71.6 rating
+Heavy Cream: Slardar 27/5/20  80.6 rating
+tammyB: Snapfire 4/13/37  53.3 rating
+euan: Winter Wyvern 3/12/33  46.2 rating
+
+Institutionalized Mentaly Ill Players [L]
+AidanBY: Phantom Lancer 17/7/13  49.6 rating
+VulGiuS: Viper 12/9/14  52.1 rating
+NEVER TOXIC PMA ONLY: Underlord 6/13/23  46.7 rating
+Herr.Beist: Rubick 2/14/20  24.1 rating
+Norge_Hallerino: Undying 1/18/23  27.0 rating
+Match 8951369208 parsed in league SecretLeague
+
+FarmVille [W]
+EbolaBear: Drow Ranger 17/4/10  64.0 rating
+akim: Lina 11/2/16  77.3 rating
+Chromozones: Underlord 6/3/19  62.1 rating
+Luke: Pudge 4/1/15  65.8 rating
+Karenlyl : Undying 1/4/28  80.2 rating
+
+Herald Royale with Cheese [L]
+Static Raindrop: Lifestealer 1/5/6  21.1 rating
+白い空-: Tinker 3/10/5  13.2 rating
+Cynical: Viper 5/10/3  9.8 rating
+A Lazy Bunny: Clockwerk 4/6/7  41.2 rating
+Mollask: Snapfire 1/10/6  11.9 rating
+Match 8951389156 parsed in league SecretLeague
+
+Midlands Massive [L]
+Dara.: Muerta 2/6/7  28.0 rating
+Polltegrais: Storm Spirit 5/4/10  44.3 rating
+starzi: Night Stalker 6/4/5  44.2 rating
+BossMan: Bane 2/8/10  39.6 rating
+Mev: Ringmaster 4/11/6  12.3 rating
+
+N-stitution [W]
+espresso depresso: Terrorblade 12/2/5  81.1 rating
+dekaiT: Slardar 4/3/14  53.0 rating
+TheArtOf: Mars 8/5/17  56.0 rating
+Glimmy: Windranger 7/4/17  70.1 rating
+FlukeY: Shadow Demon 2/5/12  64.4 rating
+Match 8951311685 parsed in league SecretLeague
+
+Money Talks [L]
+lev^(: Phantom Assassin 0/4/1  28.0 rating
+long season: Puck 0/6/0  7.4 rating
+NoTrades: Centaur Warrunner 0/7/1  9.5 rating
+Léïnád the Sharpshooter: Snapfire 1/7/0  15.3 rating
+Tom.ManchesterNumberOneFlaker: Abaddon 0/6/0  5.9 rating
+
+Imprint Esports [W]
+Asgrav: Kez 7/0/10  51.7 rating
+PK: Necrophos 9/0/6  62.0 rating
+--KeY--: Dawnbreaker 5/0/17  83.7 rating
+Conchobhar: Mirana 4/0/14  61.7 rating
+LVNATIC: Nyx Assassin 5/1/21  87.0 rating
+Match 8951403951 parsed in league SecretLeague
+
+CATWICE [W]
+Pyro.png: Clinkz 12/3/18  61.1 rating
+Lushless: Keeper of the Light 7/4/22  49.7 rating
+RaTatouille: Timbersaw 10/4/16  71.4 rating
+certified turtle: Earthshaker 5/2/20  89.5 rating
+Scardrone: Ringmaster 8/2/24  91.0 rating
+
+Chutney Smugglers [L]
+Firing Blanks: Faceless Void 2/7/10  30.2 rating
+Aeletzio: Invoker 4/8/6  10.8 rating
+Butterlopper: Centaur Warrunner 2/10/7  14.3 rating
+Mr Petchef: Lion 4/7/8  42.2 rating
+Xania: Disruptor 3/10/8  6.4 rating
+Match 8951423650 parsed in league SecretLeague
+
+TaiLungs accountants [W]
+HotBrushOfHell: Ursa 21/0/10  97.1 rating
+Hybird Theory: Centaur Warrunner 9/2/18  68.7 rating
+!o: Brewmaster 5/3/15  63.4 rating
+JB^: Shadow Demon 4/2/20  86.6 rating
+Punjabi: Hoodwink 4/5/23  71.3 rating
+
+Ctrl Alt Defeat [L]
+Hansi ♥mann: Spectre 2/3/7  30.8 rating
+Ouros: Snapfire 1/8/3  3.4 rating
+Barathrum: Axe 3/10/4  5.2 rating
+youleftthedooropen: Techies 3/10/7  12.9 rating
+Alistair: Witch Doctor 3/12/4  1.4 rating
+Match 8951415948 parsed in league SecretLeague
+
+Imprint Esports [L]
+Asgrav: Kez 0/6/11  19.1 rating
+PK: Puck 4/7/6  17.0 rating
+--KeY--: Underlord 4/7/7  19.6 rating
+Conchobhar: Mirana 3/9/10  13.4 rating
+LVNATIC: Dark Willow 9/12/8  24.6 rating
+
+Money Talks [W]
+lev^(: Lina 11/4/9  63.9 rating
+long season: Ember Spirit 16/1/19  91.8 rating
+NoTrades: Dawnbreaker 5/7/13  45.7 rating
+Léïnád the Sharpshooter: Hoodwink 5/3/28  88.1 rating
+Tom.ManchesterNumberOneFlaker: Lion 4/5/25  86.1 rating
+Match 8951381196 parsed in league SecretLeague
+
+The Dark Side of the Map [W]
+Click: Spectre 24/11/38  61.5 rating
+noah: Phoenix 22/5/45  80.9 rating
+LPANDA: Underlord 15/13/44  65.5 rating
+Joker #YTIN: Snapfire 15/11/32  72.7 rating
+Fergo: Treant Protector 3/12/50  61.1 rating
+
+Bortymites [L]
+Rat Lord: Luna 18/15/17  40.9 rating
+Borty: Zeus 9/14/28  35.6 rating
+StrongPants: Axe 11/14/19  35.2 rating
+Bonk: Winter Wyvern 5/14/33  52.9 rating
+Immoral: Undying 9/22/20  30.9 rating
+Match 8951409291 parsed in league SecretLeague
+
+D2Ire Rejects [W]
+pROMiKe (º•): Lifestealer 19/4/11  57.1 rating
+Psycho Melendez: Queen of Pain 14/4/25  79.8 rating
+Chipmonk: Underlord 3/14/20  24.6 rating
+barjakun is back: Grimstroke 4/13/25  37.0 rating
+that normie kid: Lich 0/16/19  20.8 rating
+
+No Sweat [L]
+Nobody's Perfect: Shadow Fiend 16/5/18  66.3 rating
+maia: Ember Spirit 11/9/26  40.8 rating
+EmperorMonkey: Undying 12/9/30  57.5 rating
+Maddie: Lion 5/6/17  65.5 rating
+inky: Jakiro 6/12/23  54.5 rating
+</script>
+
+<script>
+"use strict";
+
+const MY_TEAM = "herald royale with cheese";
+const OPPONENTS = ["catwice","chutney smugglers","d2ire rejects","no sweat","farmville"];
+
+const norm = s => s.trim().toLowerCase();
+const isOpp = t => OPPONENTS.includes(norm(t));
+const isMine = t => norm(t) === MY_TEAM;
+
+// ---------- parser ----------
+function parseData(text){
+  const matches = {};            // id -> {teams:[...]}
+  const lines = text.split(/\r?\n/);
+  let cur = null, curTeam = null;
+  const teamRe = /^(.+?)\s*\[([WL])\]\s*$/;
+  const plrRe  = /^(.+?):\s+(.+?)\s+(\d+)\/(\d+)\/(\d+)\s+([\d.]+)\s*rating\s*$/;
+  const matchRe = /^Match\s+(\d+)\s+parsed/i;
+
+  for(const raw of lines){
+    const line = raw.trim();
+    if(!line){ continue; }
+    let m;
+    if((m = line.match(matchRe))){
+      const id = m[1];
+      if(matches[id]){ cur = null; }      // duplicate match id -> skip
+      else { cur = matches[id] = {id, teams:[]}; }
+      curTeam = null;
+      continue;
+    }
+    if(cur && (m = line.match(teamRe))){
+      curTeam = {name:m[1].trim(), result:m[2], players:[]};
+      cur.teams.push(curTeam);
+      continue;
+    }
+    if(cur && curTeam && (m = line.match(plrRe))){
+      curTeam.players.push({
+        player:m[1].trim(), hero:m[2].trim(),
+        k:+m[3], d:+m[4], a:+m[5], rating:+m[6],
+        win: curTeam.result === "W",
+        pos: curTeam.players.length          // line index 0..4 = Pos1..Pos5
+      });
+    }
+  }
+  return Object.values(matches);
+}
+
+// ---------- aggregation ----------
+function build(matches){
+  const teams = {};   // key -> {name, wins, losses, players:{}}
+  const heroesAll = {};
+  const heroesOpp = {};
+  const heroesMine = {};
+
+  function heroBucket(store, p, win, standin){
+    const h = store[p.hero] || (store[p.hero] = {hero:p.hero, picks:0, wins:0, losses:0, k:0, d:0, a:0, rating:0, byStandin:0});
+    h.picks++; win ? h.wins++ : h.losses++;
+    h.k+=p.k; h.d+=p.d; h.a+=p.a; h.rating+=p.rating;
+    if(standin) h.byStandin++;
+  }
+
+  let idx = 0;
+  for(const match of matches){
+    for(const t of match.teams){
+      const key = norm(t.name);
+      const T = teams[key] || (teams[key] = {name:t.name, key, wins:0, losses:0, players:{}, games:0,
+                                             slots:[{},{},{},{},{}]});
+      T.games++;
+      t.result==="W" ? T.wins++ : T.losses++;
+      for(const p of t.players){
+        const P = T.players[p.player] || (T.players[p.player] = {player:p.player, games:[], wins:0, k:0,d:0,a:0, rating:0, posCount:[0,0,0,0,0]});
+        P.games.push(p);
+        if(p.win) P.wins++;
+        P.k+=p.k; P.d+=p.d; P.a+=p.a; P.rating+=p.rating;
+        P.posCount[p.pos]++;
+        // slot occupancy: how many games each name has in this position slot
+        const slot = T.slots[p.pos];
+        (slot[p.player] || (slot[p.player] = {name:p.player, games:0, firstIdx:idx})).games++;
+      }
+      idx++;
+    }
+  }
+
+  // Resolve the core player of each position slot (most games; ties -> earliest seen),
+  // then flag every game whose player is not that slot's core as a stand-in.
+  for(const T of Object.values(teams)){
+    T.coreName = T.slots.map(slot=>{
+      const names = Object.values(slot);
+      if(!names.length) return null;
+      names.sort((a,b)=> b.games-a.games || a.firstIdx-b.firstIdx);
+      return names[0].name;
+    });
+    for(const P of Object.values(T.players)){
+      // this player's main position = slot they've played most
+      P.position = P.posCount.indexOf(Math.max(...P.posCount));
+      P.isCore = T.coreName[P.position] === P.player;
+      P.standinGames = 0;
+      for(const g of P.games){
+        g.isStandin = (T.coreName[g.pos] !== P.player);
+        if(g.isStandin) P.standinGames++;
+      }
+    }
+  }
+
+  // Hero buckets, tracking how many picks came from stand-in games.
+  for(const match of matches){
+    for(const t of match.teams){
+      for(const p of t.players){
+        const standin = teams[norm(t.name)].coreName[p.pos] !== p.player;
+        heroBucket(heroesAll, p, p.win, standin);
+        if(isOpp(t.name)) heroBucket(heroesOpp, p, p.win, standin);
+        if(isMine(t.name)) heroBucket(heroesMine, p, p.win, standin);
+      }
+    }
+  }
+  return {teams, heroesAll, heroesOpp, heroesMine, nMatches:matches.length};
+}
+
+function heroList(store){
+  return Object.values(store).map(h=>({
+    hero:h.hero, picks:h.picks, wins:h.wins, losses:h.losses,
+    wr: h.picks ? h.wins/h.picks*100 : 0,
+    rating: h.picks ? h.rating/h.picks : 0,
+    k:h.k/h.picks, d:h.d/h.picks, a:h.a/h.picks,
+    byStandin: h.byStandin||0
+  }));
+}
+
+// Position labels
+const POS_ROLE = ["Carry","Mid","Offlane","Soft support","Hard support"];
+const posLabel = i => (i>=0 && i<5) ? `Pos ${i+1}` : "—";
+const posTitle = i => (i>=0 && i<5) ? `Pos ${i+1} · ${POS_ROLE[i]}` : "";
+
+// Single-team hero store built only from core (or all, if stand-ins shown) games.
+function teamHeroStoreFiltered(key){
+  const T = STATE.data.teams[key]; const store = {};
+  if(!T) return store;
+  for(const P of Object.values(T.players)) for(const g of P.games){
+    if(!STATE.showStandins && g.isStandin) continue;
+    const h = store[g.hero] || (store[g.hero] = {hero:g.hero, picks:0, wins:0, losses:0, k:0,d:0,a:0, rating:0, byStandin:0});
+    h.picks++; g.win ? h.wins++ : h.losses++;
+    h.k+=g.k; h.d+=g.d; h.a+=g.a; h.rating+=g.rating;
+    if(g.isStandin) h.byStandin++;
+  }
+  return store;
+}
+
+// ---------- render helpers ----------
+const el = (tag, cls, html) => { const n=document.createElement(tag); if(cls)n.className=cls; if(html!=null)n.innerHTML=html; return n; };
+const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const wrClass = wr => wr>=60?"good":wr<=40?"bad":"mid";
+const barColor = wr => wr>=60?"var(--good)":wr<=40?"var(--critical)":"var(--s1)";
+
+let STATE = {scope:"opps", sortKey:"wr", sortAsc:false, data:null, selectedOpp:null, heroQuery:"", showStandins:false};
+
+// The team key currently in single-team ("deep") focus, or null for aggregate scopes.
+function focusKey(){
+  if(STATE.scope==="herald") return MY_TEAM;
+  if(STATE.scope==="team")   return STATE.selectedOpp;
+  return null;
+}
+const isSingle = () => focusKey()!=null && STATE.data.teams[focusKey()];
+
+function heroStoreForScope(){
+  if(isSingle()) return teamHeroStore(focusKey());
+  if(STATE.scope==="all") return STATE.data.heroesAll;
+  return STATE.data.heroesOpp;
+}
+
+const teamHeroStore = key => teamHeroStoreFiltered(key);
+
+function teamGames(key){
+  const T = STATE.data.teams[key];
+  if(!T) return [];
+  const rows = [];
+  for(const P of Object.values(T.players))
+    for(const g of P.games){
+      if(!STATE.showStandins && g.isStandin) continue;
+      rows.push({player:P.player, hero:g.hero, k:g.k, d:g.d, a:g.a, rating:g.rating, win:g.win, isStandin:g.isStandin});
+    }
+  return rows;
+}
+
+function renderTiles(){
+  const d = STATE.data;
+  const box = document.getElementById("tiles"); box.innerHTML="";
+  let tiles;
+  if(isSingle()){
+    const key = focusKey();
+    const T = d.teams[key];
+    const heroes = heroList(teamHeroStore(key));
+    const mine = STATE.scope==="herald";
+    tiles = [
+      [`${T.wins}–${T.losses}`, mine?"our record":"record"],
+      [T.games, "games played"],
+      [heroes.length, mine?"heroes we've picked":"heroes picked"],
+      [Object.keys(T.players).length, "players"]
+    ];
+  } else {
+    const heroes = heroList(heroStoreForScope());
+    const trackedTeams = STATE.scope==="all"
+      ? Object.keys(d.teams).length
+      : OPPONENTS.filter(o=>d.teams[o]).length;
+    const games = heroes.reduce((s,h)=>s+h.picks,0);
+    tiles = [
+      [d.nMatches, "matches parsed"],
+      [trackedTeams, STATE.scope==="all"?"teams tracked":"opponents tracked"],
+      [heroes.length, "unique heroes"],
+      [games, STATE.scope==="all"?"hero picks (league)":"hero picks (opponents)"]
+    ];
+  }
+  for(const [v,k] of tiles){ const t=el("div","tile"); t.append(el("div","v",v), el("div","k",k)); box.append(t); }
+}
+
+function renderTrendLists(){
+  const tT=document.getElementById("trendTitle"), sT=document.getElementById("strugTitle");
+  const tL=document.getElementById("trendLegend"), sL=document.getElementById("strugLegend");
+
+  if(isSingle()){
+    const mine = STATE.scope==="herald";
+    tT.textContent = mine ? "What's working — our best games" : "Best games — biggest threats";
+    sT.textContent = mine ? "What's not — our weak spots" : "Weak spots — where they struggle";
+    tL.innerHTML = `<span><span class="dot" style="background:var(--good)"></span>post-game rating · higher is better</span>`;
+    sL.innerHTML = `<span><span class="dot" style="background:var(--critical)"></span>lowest-rated games</span>`;
+    const rows = teamGames(focusKey());
+    const best  = rows.slice().sort((a,b)=>b.rating-a.rating).slice(0,8);
+    const worst = rows.slice().sort((a,b)=>a.rating-b.rating).slice(0,8);
+    const rc = r => r>=50?"var(--good)":r<=30?"var(--critical)":"var(--s1)";
+    const rowHTML = g => `
+      <div class="hero-row">
+        <div class="nm" title="${esc(g.player)} — ${g.win?'Win':'Loss'}">${esc(g.hero)}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${Math.max(4,Math.min(100,g.rating)).toFixed(0)}%;background:${rc(g.rating)}"></div></div>
+        <div class="meta">${g.rating.toFixed(1)} · ${esc(g.player)}</div>
+      </div>`;
+    document.getElementById("trending").innerHTML = best.length ? best.map(rowHTML).join("")
+        : `<div class="empty">No games logged yet.</div>`;
+    document.getElementById("struggling").innerHTML = worst.length ? worst.map(rowHTML).join("")
+        : `<div class="empty">No games logged yet.</div>`;
+    return;
+  }
+
+  tT.textContent = "Trending heroes — winning picks";
+  sT.textContent = "Struggling heroes — losing picks";
+  tL.innerHTML = `<span><span class="dot" style="background:var(--good)"></span>≥60% win</span><span>min. 2 games · bar = win%</span>`;
+  sL.innerHTML = `<span><span class="dot" style="background:var(--critical)"></span>≤40% win</span><span>min. 2 games · bar = win%</span>`;
+  const heroes = heroList(heroStoreForScope()).filter(h=>h.picks>=2);
+  const trending = heroes.filter(h=>h.wr>=60).sort((a,b)=>b.wr-a.wr||b.picks-a.picks).slice(0,8);
+  const strug   = heroes.filter(h=>h.wr<=40).sort((a,b)=>a.wr-b.wr||b.picks-a.picks).slice(0,8);
+  const rowHTML = h => `
+    <div class="hero-row">
+      <div class="nm">${esc(h.hero)}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.max(4,h.wr).toFixed(0)}%;background:${barColor(h.wr)}"></div></div>
+      <div class="meta">${h.wr.toFixed(0)}% · ${h.wins}-${h.losses}</div>
+    </div>`;
+  document.getElementById("trending").innerHTML = trending.length ? trending.map(rowHTML).join("")
+      : `<div class="empty">No hero has 2+ games at ≥60% yet.</div>`;
+  document.getElementById("struggling").innerHTML = strug.length ? strug.map(rowHTML).join("")
+      : `<div class="empty">No hero has 2+ games at ≤40% yet.</div>`;
+}
+
+function renderHeroTable(){
+  let heroes = heroList(heroStoreForScope());
+  const total = heroes.length;
+  const q = STATE.heroQuery.trim().toLowerCase();
+  if(q) heroes = heroes.filter(h=>h.hero.toLowerCase().includes(q));
+  const k = STATE.sortKey, asc = STATE.sortAsc;
+  heroes.sort((a,b)=>{
+    let av=a[k], bv=b[k];
+    if(k==="hero"){ return asc? String(av).localeCompare(bv): String(bv).localeCompare(av); }
+    if(k==="kda"){ av=a.k+a.a-a.d; bv=b.k+b.a-b.d; }
+    return asc? av-bv : bv-av;
+  });
+  const cnt = document.getElementById("heroCount");
+  cnt.textContent = q ? `${heroes.length} of ${total} heroes` : `${total} heroes`;
+  const tb = document.querySelector("#heroTable tbody"); tb.innerHTML="";
+  if(!heroes.length){
+    tb.innerHTML = `<tr><td colspan="7" class="empty">No hero matches “${esc(STATE.heroQuery.trim())}”.</td></tr>`;
+  }
+  for(const h of heroes){
+    const tr=el("tr");
+    tr.innerHTML = `
+      <td>${esc(h.hero)}${(isSingle() && STATE.showStandins && h.byStandin) ? `<span class="hero-sub" title="${h.byStandin} of ${h.picks} pick(s) by a stand-in">SUB</span>` : ''}</td>
+      <td class="num">${h.picks}</td>
+      <td class="num">${h.wins}</td>
+      <td class="num">${h.losses}</td>
+      <td class="num"><span class="pill ${wrClass(h.wr)}">${h.wr.toFixed(0)}%</span></td>
+      <td class="num">${h.rating.toFixed(1)}</td>
+      <td class="num">${h.k.toFixed(1)}/${h.d.toFixed(1)}/${h.a.toFixed(1)}</td>`;
+    tb.append(tr);
+  }
+  document.querySelectorAll("#heroTable th").forEach(th=>{
+    th.classList.toggle("sorted", th.dataset.k===k);
+    th.classList.toggle("asc", th.dataset.k===k && asc);
+  });
+  document.getElementById("heroScopeNote").textContent =
+    isSingle() ? `Heroes ${STATE.data.teams[focusKey()].name} has picked${STATE.showStandins?" (incl. stand-ins, flagged SUB)":" — core players only"}. Click a column to sort.`
+    : STATE.scope==="all" ? "All heroes picked across every league game. Click a column to sort."
+    : "Heroes your 5 opponents have picked. Click a column to sort.";
+}
+
+function playerSummary(P){
+  const g = P.games.length;
+  return {
+    ...P, g,
+    wr: g? P.wins/g*100:0,
+    avgR: g? P.rating/g:0,
+    avgK:P.k/g, avgD:P.d/g, avgA:P.a/g
+  };
+}
+
+function renderTeams(){
+  const d = STATE.data;
+  const box = document.getElementById("teams"); box.innerHTML="";
+  // full = game-by-game chips + hero pool; compact = roster-only scan
+  const single = isSingle();
+  const full = single;
+
+  let keys;
+  if(STATE.scope==="all"){
+    keys = Object.keys(d.teams).sort((a,b)=>{
+      const A=d.teams[a], B=d.teams[b];
+      return (B.wins-B.losses)-(A.wins-A.losses) || B.wins-A.wins || A.name.localeCompare(B.name);
+    });
+  } else if(single){
+    keys = [focusKey()];
+  } else {
+    keys = OPPONENTS.filter(o=>d.teams[o]);
+  }
+
+  const mine = STATE.scope==="herald";
+  const title = STATE.scope==="all" ? "All teams"
+    : single ? `${d.teams[focusKey()].name} — ${mine?"our roster":"roster"}`
+    : "Your opponents";
+  const note = single
+      ? (mine
+          ? `Our core five by position${STATE.showStandins?", plus flagged stand-ins":""}. ★ marks our highest-rated player.`
+          : `Their core five by position${STATE.showStandins?", plus flagged stand-ins":""}. ★ marks the highest-rated (carry threat).`)
+    : STATE.scope==="all"
+      ? "Every team in the league, sorted by record — core five only, by position. Your team is highlighted."
+      : "Your 5 direct opponents — core five by position and rating. Stand-ins hidden here; open Team deep-dive to see them.";
+  document.getElementById("teamsTitle").textContent = title;
+  document.getElementById("teamsNote").textContent = note;
+
+  // Render one player row.
+  const playerRow = (p, isKey, full) => {
+    let gamesBlock = "";
+    if(full){
+      const games = STATE.showStandins ? p.games : p.games.filter(g=>!g.isStandin);
+      const gamesHTML = games.map(g=>`
+        <span class="g-chip ${g.win?'win':'loss'}${g.isStandin?' sub':''}" title="${esc(g.hero)} — ${g.win?'Win':'Loss'} — ${g.rating} rating${g.isStandin?' — stand-in ('+posLabel(g.pos)+')':''}">
+          ${esc(g.hero)} <span class="kda">${g.k}/${g.d}/${g.a}</span>
+        </span>`).join("");
+      gamesBlock = `<div class="pl-games">${gamesHTML}</div>`;
+    }
+    const pr = el("div","plr" + (p.isCore?"":" standin"));
+    pr.innerHTML = `
+      <div class="pl-top">
+        <div class="pl-name">
+          ${p.isCore?`<span class="pos-tag" title="${posTitle(p.position)}">${posLabel(p.position)}</span>`:''}
+          ${isKey?'<span class="star">★</span> ':''}${esc(p.player)}
+          ${isKey?'<span class="pl-key">TOP</span>':''}${p.isCore?'':'<span class="sub-tag">SUB</span>'}
+        </div>
+        <div class="pl-rt"><span class="pill ${wrClass(p.wr)}">${p.avgR.toFixed(1)}</span> · ${p.wins}-${p.g-p.wins}</div>
+      </div>
+      ${gamesBlock}`;
+    return pr;
+  };
+
+  for(const key of keys){
+    const T = d.teams[key];
+    const all = Object.values(T.players).map(playerSummary);
+    const cores = all.filter(p=>p.isCore).sort((a,b)=>a.position-b.position);
+    const subs  = all.filter(p=>!p.isCore).sort((a,b)=>a.position-b.position || b.avgR-a.avgR);
+    // top player (★) chosen among core five, by rating
+    const keyP = cores.slice().sort((a,b)=>b.avgR-a.avgR)[0];
+
+    const card = el("div","tcard" + (isMine(T.name)?" mine":""));
+    let tag = "";
+    if(isMine(T.name)) tag = `<div class="ttag tag-mine">◆ Your team</div>`;
+    else if(isOpp(T.name)) tag = `<div class="ttag tag-opp">● Direct opponent</div>`;
+    else tag = `<div class="ttag">League team</div>`;
+    const subCount = subs.length;
+    const subNote = (!full && subCount) ? `<span class="sub-tag" title="${subCount} stand-in name(s) seen — view in Team deep-dive">${subCount} SUB</span>` : "";
+
+    card.innerHTML = `
+      <div class="thead">
+        <div class="tname">${esc(T.name)}${subNote}</div>
+        <div class="trec">${T.wins}–${T.losses}</div>
+      </div>${tag}`;
+
+    for(const p of cores) card.append(playerRow(p, keyP && p.player===keyP.player, full));
+
+    if(full && STATE.showStandins && subs.length){
+      card.append(el("div","standin-head", `Stand-ins (${subs.length})`));
+      for(const p of subs) card.append(playerRow(p, false, full));
+    }
+
+    if(full){
+      const pool = [...new Set(Object.values(T.players).flatMap(P=>P.games
+        .filter(g=>STATE.showStandins || !g.isStandin).map(g=>g.hero)))];
+      card.append(el("div","tpool",`<b>Hero pool (${pool.length}):</b> ${pool.map(esc).join(", ")}`));
+    }
+    box.append(card);
+  }
+}
+
+function renderAll(){
+  renderTiles();
+  renderTrendLists();
+  renderMatchups();
+  renderHeroTable();
+  renderTeams();
+  const foot = document.getElementById("foot");
+  foot.textContent = `Secretshop League scouting · ${STATE.data.nMatches} matches parsed · duplicate match IDs auto-removed · built for Herald Royale with Cheese.`;
+}
+
+// ---------- wiring ----------
+function populateTeamSelect(){
+  const sel = document.getElementById("teamSelect");
+  const present = OPPONENTS.filter(o=>STATE.data.teams[o]);
+  sel.innerHTML = present.map(o=>`<option value="${o}">${esc(STATE.data.teams[o].name)}</option>`).join("");
+  if(!STATE.selectedOpp || !STATE.data.teams[STATE.selectedOpp]) STATE.selectedOpp = present[0] || null;
+  if(STATE.selectedOpp) sel.value = STATE.selectedOpp;
+}
+
+function syncTeamSelectVisibility(){
+  document.getElementById("teamSelect").style.display = STATE.scope==="team" ? "" : "none";
+  const sb = document.getElementById("standinBtn");
+  sb.style.display = isSingle() ? "" : "none";
+  sb.textContent = STATE.showStandins ? "Stand-ins: on" : "Stand-ins: off";
+  sb.classList.toggle("on", STATE.showStandins);
+}
+
+function recompute(text){
+  const matches = parseData(text);
+  STATE.data = build(matches);
+  STATE.data.matches = matches;   // keep match-level data for matchup analysis
+  populateTeamSelect();
+  renderAll();
+  return matches.length;
+}
+
+// Enemy heroes drafted against a given team, split by that team's result.
+function enemyHeroes(key){
+  const beat = {}, lost = {};   // hero -> {hero, count}
+  for(const m of (STATE.data.matches||[])){
+    const me = m.teams.find(t=>norm(t.name)===key);
+    if(!me) continue;
+    const foe = m.teams.find(t=>norm(t.name)!==key);
+    if(!foe) continue;
+    const bucket = (me.result==="W") ? beat : lost;
+    for(const p of foe.players){
+      (bucket[p.hero] || (bucket[p.hero] = {hero:p.hero, count:0})).count++;
+    }
+  }
+  const toList = o => Object.values(o).sort((a,b)=>b.count-a.count || a.hero.localeCompare(b.hero));
+  return {beat:toList(beat), lost:toList(lost)};
+}
+
+function renderMatchups(){
+  const sec = document.getElementById("matchupSection");
+  if(!isSingle()){ sec.style.display="none"; return; }
+  sec.style.display="";
+  const key = focusKey(), mine = STATE.scope==="herald";
+  const name = STATE.data.teams[key].name;
+  const {beat, lost} = enemyHeroes(key);
+
+  document.getElementById("matchupTitle").textContent =
+    mine ? "Matchups — heroes we've faced" : `Matchups — heroes faced by ${name}`;
+  document.getElementById("matchupNote").textContent = mine
+    ? "Enemy heroes drafted against us, split by result. The right column is what has beaten us — heroes to prep or ban."
+    : `Enemy heroes drafted against ${name}, split by result. Left = heroes they've beaten; right = heroes that have beaten them (their soft spots to target).`;
+  document.getElementById("beatTitle").textContent = mine ? "Heroes we beat" : "Heroes they beat";
+  document.getElementById("lostTitle").textContent = mine ? "Heroes that beat us" : "Heroes that beat them";
+
+  const render = (arr, color, emptyMsg) => {
+    if(!arr.length) return `<div class="empty">${emptyMsg}</div>`;
+    const max = Math.max(...arr.map(h=>h.count));
+    return arr.map(h=>`
+      <div class="hero-row">
+        <div class="nm">${esc(h.hero)}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${Math.max(8,h.count/max*100).toFixed(0)}%;background:${color}"></div></div>
+        <div class="meta">${h.count>1?`faced ×${h.count}`:"faced ×1"}</div>
+      </div>`).join("");
+  };
+  document.getElementById("beatList").innerHTML = render(beat, "var(--good)",
+    mine ? "No wins logged yet." : "No wins logged yet.");
+  document.getElementById("lostList").innerHTML = render(lost, "var(--critical)",
+    mine ? "Unbeaten so far." : "Unbeaten so far.");
+}
+
+document.getElementById("scope").addEventListener("click", e=>{
+  const b = e.target.closest("button"); if(!b) return;
+  STATE.scope = b.dataset.scope;
+  document.querySelectorAll("#scope button").forEach(x=>x.classList.toggle("active", x===b));
+  syncTeamSelectVisibility();
+  renderAll();
+});
+
+document.getElementById("teamSelect").addEventListener("change", e=>{
+  STATE.selectedOpp = e.target.value;
+  renderAll();
+});
+
+document.getElementById("standinBtn").addEventListener("click", ()=>{
+  STATE.showStandins = !STATE.showStandins;
+  syncTeamSelectVisibility();
+  renderAll();
+});
+
+document.getElementById("heroSearch").addEventListener("input", e=>{
+  STATE.heroQuery = e.target.value;
+  renderHeroTable();
+});
+
+document.querySelectorAll("#heroTable th").forEach(th=>{
+  th.addEventListener("click", ()=>{
+    const k = th.dataset.k;
+    if(STATE.sortKey===k) STATE.sortAsc=!STATE.sortAsc;
+    else { STATE.sortKey=k; STATE.sortAsc = (k==="hero"); }
+    renderHeroTable();
+  });
+});
+
+document.getElementById("themeBtn").addEventListener("click", ()=>{
+  const root=document.documentElement;
+  const light = root.getAttribute("data-theme")==="light";
+  root.setAttribute("data-theme", light?"dark":"light");
+  document.getElementById("themeBtn").textContent = light? "☀ Light":"☾ Dark";
+});
+
+document.getElementById("updateBtn").addEventListener("click", ()=>{
+  const txt = document.getElementById("rawInput").value;
+  document.getElementById("raw-data").textContent = txt;   // keep source in sync for download
+  const n = recompute(txt);
+  const msg = document.getElementById("parseMsg");
+  msg.textContent = `Updated — ${n} unique matches parsed.`;
+  msg.style.color = "var(--good)";
+});
+
+document.getElementById("dlBtn").addEventListener("click", ()=>{
+  // bake current textarea data into the raw-data script, then export whole doc
+  document.getElementById("raw-data").textContent = document.getElementById("rawInput").value;
+  const clone = document.documentElement.cloneNode(true);
+  // reset default theme to dark in the export & clear transient messages
+  clone.setAttribute("data-theme","dark");
+  const html = "<!DOCTYPE html>\n" + clone.outerHTML;
+  const blob = new Blob([html], {type:"text/html"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "secretshop_dashboard.html";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+// ---------- init ----------
+(function init(){
+  const raw = document.getElementById("raw-data").textContent;
+  document.getElementById("rawInput").value = raw.trim();
+  recompute(raw);
+})();
+</script>
+</body>
+</html>
