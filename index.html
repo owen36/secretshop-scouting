@@ -195,398 +195,443 @@
     <div class="seg" id="scope">
       <button data-scope="opps" class="">My 5 opponents</button>
       <button data-scope="team" class="">Team deep-dive</button>
-      <button data-scope="herald" class="">Herald (us)</button>
+      <button data-scope="herald" class="active">Herald (us)</button>
       <button data-scope="all" class="">Whole league</button>
-      <button data-scope="pubs" class="active">Pubs (non-league)</button>
+      <button data-scope="pubs" class="">Pubs (non-league)</button>
     </div>
-    <select id="teamSelect" class="ghost sel" style="display: none;"><optgroup label="Your opponents"><option value="catwice">CATWICE</option><option value="chutney smugglers">Chutney Smugglers</option><option value="d2ire rejects">D2Ire Rejects</option><option value="no sweat">No Sweat</option><option value="farmville">FarmVille</option></optgroup><optgroup label="Rest of the league"><option value="#dota_goodguys">#DOTA_GoodGuys</option><option value="bortymites">Bortymites</option><option value="ctrl alt defeat">Ctrl Alt Defeat</option><option value="free bans gang">Free Bans Gang</option><option value="glizzy gladiators">Glizzy Gladiators</option><option value="imprint esports">Imprint Esports</option><option value="institutionalized mentaly ill players">Institutionalized Mentaly Ill Players</option><option value="midlands massive">Midlands Massive</option><option value="money talks">Money Talks</option><option value="n-stitution">N-stitution</option><option value="slob team">SLOB TEAM</option><option value="tailungs accountants">TaiLungs accountants</option><option value="the dark side of the map">The Dark Side of the Map</option><option value="truers official">Truers Official</option></optgroup></select>
-    <button class="ghost" id="standinBtn" style="display: none;">Stand-ins: off</button>
-    <button class="ghost" id="enrichBtn" title="Fetch hero icons + draft/ban data from OpenDota (needs internet)" style="display: none;">↯ Enrich from OpenDota</button>
+    <select id="teamSelect" class="ghost sel" style="display: none;"><optgroup label="Your opponents"><option value="catwice">CATWICE</option><option value="chutney smugglers">Chutney Smugglers</option><option value="d2ire rejects">D2Ire Rejects</option><option value="no sweat">No Sweat</option><option value="farmville">FarmVille</option></optgroup><optgroup label="Rest of the league"><option value="bortymites">Bortymites</option><option value="ctrl alt defeat">Ctrl Alt Defeat</option><option value="free bans gang">Free Bans Gang</option><option value="glizzy gladiators">Glizzy Gladiators</option><option value="imprint esports">Imprint Esports</option><option value="institutionalized mentaly ill players">Institutionalized Mentaly Ill Players</option><option value="midlands massive">Midlands Massive</option><option value="money talks">Money Talks</option><option value="n-stitution">N-stitution</option><option value="slob team">SLOB TEAM</option><option value="tailungs accountants">TaiLungs accountants</option><option value="the dark side of the map">The Dark Side of the Map</option><option value="truers official">Truers Official</option></optgroup></select>
+    <button class="ghost on" id="standinBtn" style="">Stand-ins: on</button>
+    <button class="ghost" id="enrichBtn" title="Fetch hero icons + draft/ban data from OpenDota (needs internet)" style="">↯ Enrich from OpenDota</button>
     <span class="enrich-status ok" id="enrichStatus"></span>
     <span class="spacer"></span>
     <button class="ghost" id="themeBtn">☀ Light</button>
     <button class="ghost" id="dlBtn">⤓ Download updated</button>
   </div>
 
-  <div class="tiles" id="tiles" style="display: none;"><div class="tile"><div class="v">30</div><div class="k">matches parsed</div></div><div class="tile"><div class="v">5</div><div class="k">opponents tracked</div></div><div class="tile"><div class="v">56</div><div class="k">unique heroes</div></div><div class="tile"><div class="v">100</div><div class="k">hero picks (opponents)</div></div></div>
+  <div class="tiles" id="tiles" style=""><div class="tile"><div class="v">0–4</div><div class="k">our record</div></div><div class="tile"><div class="v">4</div><div class="k">games played</div></div><div class="tile"><div class="v">19</div><div class="k">heroes we've picked</div></div><div class="tile"><div class="v">5</div><div class="k">players</div></div></div>
 
-  <section style="display: none;">
+  <section style="">
     <div class="two-col">
       <div class="panel">
-        <h3 id="trendTitle">Trending heroes — winning picks</h3>
+        <h3 id="trendTitle">What's working — our best games</h3>
         <div id="trending">
-    <div class="hero-row">
-      <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/clinkz.png?" alt="" loading="lazy" onerror="this.style.display='none'">Clinkz</div>
-      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--good)"></div></div>
-      <div class="meta">100% · 3-0</div>
-    </div>
-    <div class="hero-row">
-      <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/techies.png?" alt="" loading="lazy" onerror="this.style.display='none'">Techies</div>
-      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--good)"></div></div>
-      <div class="meta">100% · 2-0</div>
-    </div>
-    <div class="hero-row">
-      <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/pudge.png?" alt="" loading="lazy" onerror="this.style.display='none'">Pudge</div>
-      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--good)"></div></div>
-      <div class="meta">100% · 2-0</div>
-    </div>
-    <div class="hero-row">
-      <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/earthshaker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Earthshaker</div>
-      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--good)"></div></div>
-      <div class="meta">100% · 2-0</div>
-    </div>
-    <div class="hero-row">
-      <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/vengefulspirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Vengeful Spirit</div>
-      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--good)"></div></div>
-      <div class="meta">100% · 2-0</div>
-    </div>
-    <div class="hero-row">
-      <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dark_seer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Dark Seer</div>
-      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--good)"></div></div>
-      <div class="meta">100% · 2-0</div>
-    </div>
-    <div class="hero-row">
-      <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/viper.png?" alt="" loading="lazy" onerror="this.style.display='none'">Viper</div>
-      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--good)"></div></div>
-      <div class="meta">100% · 2-0</div>
-    </div>
-    <div class="hero-row">
-      <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/life_stealer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lifestealer</div>
-      <div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--good)"></div></div>
-      <div class="meta">75% · 3-1</div>
-    </div></div>
-        <div class="legend-note" id="trendLegend"><span><span class="dot" style="background:var(--good)"></span>≥60% win</span><span>min. 2 games · bar = win%</span></div>
+      <div class="hero-row">
+        <div class="nm" title="A Lazy Bunny — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/rattletrap.png?" alt="" loading="lazy" onerror="this.style.display='none'">Clockwerk</div>
+        <div class="bar-track"><div class="bar-fill" style="width:41%;background:var(--s1)"></div></div>
+        <div class="meta">41.2 · A Lazy Bunny</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm" title="A Lazy Bunny — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/largo.png?" alt="" loading="lazy" onerror="this.style.display='none'">Largo</div>
+        <div class="bar-track"><div class="bar-fill" style="width:40%;background:var(--s1)"></div></div>
+        <div class="meta">39.6 · A Lazy Bunny</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm" title="Static Raindrop — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/spectre.png?" alt="" loading="lazy" onerror="this.style.display='none'">Spectre</div>
+        <div class="bar-track"><div class="bar-fill" style="width:34%;background:var(--s1)"></div></div>
+        <div class="meta">33.8 · Static Raindrop</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm" title="Cynical — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dawnbreaker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Dawnbreaker</div>
+        <div class="bar-track"><div class="bar-fill" style="width:32%;background:var(--s1)"></div></div>
+        <div class="meta">32.0 · Cynical</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm" title="Static Raindrop — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/nevermore.png?" alt="" loading="lazy" onerror="this.style.display='none'">Shadow Fiend</div>
+        <div class="bar-track"><div class="bar-fill" style="width:32%;background:var(--s1)"></div></div>
+        <div class="meta">31.5 · Static Raindrop</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm" title="A Lazy Bunny — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lina.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lina</div>
+        <div class="bar-track"><div class="bar-fill" style="width:30%;background:var(--critical)"></div></div>
+        <div class="meta">29.6 · A Lazy Bunny</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm" title="Mollask — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/vengefulspirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Vengeful Spirit</div>
+        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--critical)"></div></div>
+        <div class="meta">25.4 · Mollask</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm" title="Cynical — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/centaur.png?" alt="" loading="lazy" onerror="this.style.display='none'">Centaur Warrunner</div>
+        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--critical)"></div></div>
+        <div class="meta">24.7 · Cynical</div>
+      </div></div>
+        <div class="legend-note" id="trendLegend"><span><span class="dot" style="background:var(--good)"></span>post-game rating · higher is better</span></div>
       </div>
       <div class="panel">
-        <h3 id="strugTitle">Struggling heroes — losing picks</h3>
+        <h3 id="strugTitle">What's not — our weak spots</h3>
         <div id="struggling">
-    <div class="hero-row">
-      <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/rubick.png?" alt="" loading="lazy" onerror="this.style.display='none'">Rubick</div>
-      <div class="bar-track"><div class="bar-fill" style="width:4%;background:var(--critical)"></div></div>
-      <div class="meta">0% · 0-2</div>
-    </div>
-    <div class="hero-row">
-      <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/hoodwink.png?" alt="" loading="lazy" onerror="this.style.display='none'">Hoodwink</div>
-      <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--critical)"></div></div>
-      <div class="meta">25% · 1-3</div>
-    </div>
-    <div class="hero-row">
-      <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/shadow_shaman.png?" alt="" loading="lazy" onerror="this.style.display='none'">Shadow Shaman</div>
-      <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--critical)"></div></div>
-      <div class="meta">33% · 1-2</div>
-    </div>
-    <div class="hero-row">
-      <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/centaur.png?" alt="" loading="lazy" onerror="this.style.display='none'">Centaur Warrunner</div>
-      <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--critical)"></div></div>
-      <div class="meta">33% · 1-2</div>
-    </div>
-    <div class="hero-row">
-      <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lion.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lion</div>
-      <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--critical)"></div></div>
-      <div class="meta">33% · 1-2</div>
-    </div>
-    <div class="hero-row">
-      <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lich.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lich</div>
-      <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--critical)"></div></div>
-      <div class="meta">33% · 1-2</div>
-    </div></div>
-        <div class="legend-note" id="strugLegend"><span><span class="dot" style="background:var(--critical)"></span>≤40% win</span><span>min. 2 games · bar = win%</span></div>
+      <div class="hero-row">
+        <div class="nm" title="Mollask — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/silencer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Silencer</div>
+        <div class="bar-track"><div class="bar-fill" style="width:4%;background:var(--critical)"></div></div>
+        <div class="meta">2.2 · Mollask</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm" title="白い空- — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/invoker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Invoker</div>
+        <div class="bar-track"><div class="bar-fill" style="width:4%;background:var(--critical)"></div></div>
+        <div class="meta">2.8 · 白い空-</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm" title="Static Raindrop — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/drow_ranger.png?" alt="" loading="lazy" onerror="this.style.display='none'">Drow Ranger</div>
+        <div class="bar-track"><div class="bar-fill" style="width:7%;background:var(--critical)"></div></div>
+        <div class="meta">6.9 · Static Raindrop</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm" title="Cynical — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/viper.png?" alt="" loading="lazy" onerror="this.style.display='none'">Viper</div>
+        <div class="bar-track"><div class="bar-fill" style="width:10%;background:var(--critical)"></div></div>
+        <div class="meta">9.8 · Cynical</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm" title="白い空- — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/earth_spirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Earth Spirit</div>
+        <div class="bar-track"><div class="bar-fill" style="width:11%;background:var(--critical)"></div></div>
+        <div class="meta">10.6 · 白い空-</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm" title="Mollask — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/snapfire.png?" alt="" loading="lazy" onerror="this.style.display='none'">Snapfire</div>
+        <div class="bar-track"><div class="bar-fill" style="width:12%;background:var(--critical)"></div></div>
+        <div class="meta">11.9 · Mollask</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm" title="白い空- — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/tinker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Tinker</div>
+        <div class="bar-track"><div class="bar-fill" style="width:13%;background:var(--critical)"></div></div>
+        <div class="meta">13.2 · 白い空-</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm" title="Cynical — Loss"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/abyssal_underlord.png?" alt="" loading="lazy" onerror="this.style.display='none'">Underlord</div>
+        <div class="bar-track"><div class="bar-fill" style="width:15%;background:var(--critical)"></div></div>
+        <div class="meta">14.6 · Cynical</div>
+      </div></div>
+        <div class="legend-note" id="strugLegend"><span><span class="dot" style="background:var(--critical)"></span>lowest-rated games</span></div>
       </div>
     </div>
   </section>
 
-  <section id="matchupSection" style="display: none;">
-    <h2 id="matchupTitle">Matchups — heroes faced by FarmVille</h2>
-    <p class="h-note" id="matchupNote">Enemy heroes drafted against FarmVille, split by result. Left = heroes they've beaten; right = heroes that have beaten them (their soft spots to target).</p>
+  <section id="matchupSection" style="">
+    <h2 id="matchupTitle">Matchups — heroes we've faced</h2>
+    <p class="h-note" id="matchupNote">Enemy heroes drafted against us, split by result. The right column is what has beaten us — heroes to prep or ban.</p>
     <div class="two-col">
       <div class="panel">
-        <h3 id="beatTitle">Heroes they beat</h3>
-        <div id="beatList">
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/life_stealer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lifestealer</div>
-        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--good)"></div></div>
-        <div class="meta">faced ×2</div>
+        <h3 id="beatTitle">Heroes we beat</h3>
+        <div id="beatList"><div class="empty">No wins logged yet.</div></div>
+        <div class="legend-note"><span><span class="dot" style="background:var(--good)"></span>enemy heroes in games they won · bar = times faced</span></div>
       </div>
+      <div class="panel">
+        <h3 id="lostTitle">Heroes that beat us</h3>
+        <div id="lostList">
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/snapfire.png?" alt="" loading="lazy" onerror="this.style.display='none'">Snapfire</div>
-        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--good)"></div></div>
-        <div class="meta">faced ×2</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/spectre.png?" alt="" loading="lazy" onerror="this.style.display='none'">Spectre</div>
-        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--good)"></div></div>
-        <div class="meta">faced ×2</div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/antimage.png?" alt="" loading="lazy" onerror="this.style.display='none'">Anti-Mage</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
+        <div class="meta">faced ×1</div>
       </div>
       <div class="hero-row">
         <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/axe.png?" alt="" loading="lazy" onerror="this.style.display='none'">Axe</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
         <div class="meta">faced ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/rattletrap.png?" alt="" loading="lazy" onerror="this.style.display='none'">Clockwerk</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/clinkz.png?" alt="" loading="lazy" onerror="this.style.display='none'">Clinkz</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
         <div class="meta">faced ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/crystal_maiden.png?" alt="" loading="lazy" onerror="this.style.display='none'">Crystal Maiden</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dark_seer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Dark Seer</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
         <div class="meta">faced ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dawnbreaker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Dawnbreaker</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/drow_ranger.png?" alt="" loading="lazy" onerror="this.style.display='none'">Drow Ranger</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
         <div class="meta">faced ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/hoodwink.png?" alt="" loading="lazy" onerror="this.style.display='none'">Hoodwink</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/earth_spirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Earth Spirit</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
         <div class="meta">faced ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/invoker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Invoker</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/earthshaker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Earthshaker</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
         <div class="meta">faced ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/largo.png?" alt="" loading="lazy" onerror="this.style.display='none'">Largo</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/ember_spirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Ember Spirit</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
         <div class="meta">faced ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lich.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lich</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/jakiro.png?" alt="" loading="lazy" onerror="this.style.display='none'">Jakiro</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
         <div class="meta">faced ×1</div>
       </div>
       <div class="hero-row">
         <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lina.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lina</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
         <div class="meta">faced ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/shadow_shaman.png?" alt="" loading="lazy" onerror="this.style.display='none'">Shadow Shaman</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/mars.png?" alt="" loading="lazy" onerror="this.style.display='none'">Mars</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
         <div class="meta">faced ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/tinker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Tinker</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/mirana.png?" alt="" loading="lazy" onerror="this.style.display='none'">Mirana</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
+        <div class="meta">faced ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/necrolyte.png?" alt="" loading="lazy" onerror="this.style.display='none'">Necrophos</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
+        <div class="meta">faced ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/pudge.png?" alt="" loading="lazy" onerror="this.style.display='none'">Pudge</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
+        <div class="meta">faced ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/silencer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Silencer</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
+        <div class="meta">faced ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/snapfire.png?" alt="" loading="lazy" onerror="this.style.display='none'">Snapfire</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
+        <div class="meta">faced ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/techies.png?" alt="" loading="lazy" onerror="this.style.display='none'">Techies</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
+        <div class="meta">faced ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/templar_assassin.png?" alt="" loading="lazy" onerror="this.style.display='none'">Templar Assassin</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
         <div class="meta">faced ×1</div>
       </div>
       <div class="hero-row">
         <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/abyssal_underlord.png?" alt="" loading="lazy" onerror="this.style.display='none'">Underlord</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
         <div class="meta">faced ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/vengefulspirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Vengeful Spirit</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div>
-        <div class="meta">faced ×1</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/viper.png?" alt="" loading="lazy" onerror="this.style.display='none'">Viper</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/undying.png?" alt="" loading="lazy" onerror="this.style.display='none'">Undying</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div>
         <div class="meta">faced ×1</div>
       </div></div>
-        <div class="legend-note"><span><span class="dot" style="background:var(--good)"></span>enemy heroes in games they won · bar = times faced</span></div>
-      </div>
-      <div class="panel">
-        <h3 id="lostTitle">Heroes that beat them</h3>
-        <div id="lostList"><div class="empty">Unbeaten so far.</div></div>
         <div class="legend-note"><span><span class="dot" style="background:var(--critical)"></span>enemy heroes in games they lost · bar = times faced</span></div>
       </div>
     </div>
   </section>
 
-  <section id="banSection" style="display: none;">
-    <h2 id="banTitle">Draft — FarmVille's bans</h2>
-    <p class="h-note" id="banNote">Heroes FarmVille bans, and what opponents ban against them.</p>
+  <section id="banSection" style="">
+    <h2 id="banTitle">Draft — our bans</h2>
+    <p class="h-note" id="banNote">Heroes we remove in the draft, and what opponents ban against us.</p>
     <div class="two-col">
       <div class="panel">
-        <h3 id="banTheirsTitle">Heroes they ban</h3>
+        <h3 id="banTheirsTitle">Heroes we ban</h3>
         <div id="banTheirs">
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lich.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lich</div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/clinkz.png?" alt="" loading="lazy" onerror="this.style.display='none'">Clinkz</div>
         <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--s2)"></div></div>
         <div class="meta">banned ×3</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/ember_spirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Ember Spirit</div>
-        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s2)"></div></div>
-        <div class="meta">banned ×2</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/enigma.png?" alt="" loading="lazy" onerror="this.style.display='none'">Enigma</div>
-        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s2)"></div></div>
-        <div class="meta">banned ×2</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/invoker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Invoker</div>
-        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s2)"></div></div>
-        <div class="meta">banned ×2</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/juggernaut.png?" alt="" loading="lazy" onerror="this.style.display='none'">Juggernaut</div>
-        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s2)"></div></div>
-        <div class="meta">banned ×2</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lion.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lion</div>
-        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s2)"></div></div>
-        <div class="meta">banned ×2</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/shadow_shaman.png?" alt="" loading="lazy" onerror="this.style.display='none'">Shadow Shaman</div>
-        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s2)"></div></div>
-        <div class="meta">banned ×2</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/undying.png?" alt="" loading="lazy" onerror="this.style.display='none'">Undying</div>
-        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s2)"></div></div>
-        <div class="meta">banned ×2</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/void_spirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Void Spirit</div>
-        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s2)"></div></div>
-        <div class="meta">banned ×2</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/arc_warden.png?" alt="" loading="lazy" onerror="this.style.display='none'">Arc Warden</div>
-        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
-        <div class="meta">banned ×1</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/bane.png?" alt="" loading="lazy" onerror="this.style.display='none'">Bane</div>
-        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
-        <div class="meta">banned ×1</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dawnbreaker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Dawnbreaker</div>
-        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
-        <div class="meta">banned ×1</div>
-      </div>
-      <div class="hero-row">
         <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/hoodwink.png?" alt="" loading="lazy" onerror="this.style.display='none'">Hoodwink</div>
+        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s2)"></div></div>
+        <div class="meta">banned ×2</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/phantom_lancer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Phantom Lancer</div>
+        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s2)"></div></div>
+        <div class="meta">banned ×2</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/ringmaster.png?" alt="" loading="lazy" onerror="this.style.display='none'">Ring Master</div>
+        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s2)"></div></div>
+        <div class="meta">banned ×2</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/rubick.png?" alt="" loading="lazy" onerror="this.style.display='none'">Rubick</div>
+        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s2)"></div></div>
+        <div class="meta">banned ×2</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/witch_doctor.png?" alt="" loading="lazy" onerror="this.style.display='none'">Witch Doctor</div>
+        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s2)"></div></div>
+        <div class="meta">banned ×2</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/ancient_apparition.png?" alt="" loading="lazy" onerror="this.style.display='none'">Ancient Apparition</div>
         <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/jakiro.png?" alt="" loading="lazy" onerror="this.style.display='none'">Jakiro</div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/axe.png?" alt="" loading="lazy" onerror="this.style.display='none'">Axe</div>
         <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/keeper_of_the_light.png?" alt="" loading="lazy" onerror="this.style.display='none'">Keeper of the Light</div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/centaur.png?" alt="" loading="lazy" onerror="this.style.display='none'">Centaur Warrunner</div>
         <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/medusa.png?" alt="" loading="lazy" onerror="this.style.display='none'">Medusa</div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/earthshaker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Earthshaker</div>
         <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/oracle.png?" alt="" loading="lazy" onerror="this.style.display='none'">Oracle</div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/legion_commander.png?" alt="" loading="lazy" onerror="this.style.display='none'">Legion Commander</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
+        <div class="meta">banned ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/life_stealer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lifestealer</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
+        <div class="meta">banned ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/mirana.png?" alt="" loading="lazy" onerror="this.style.display='none'">Mirana</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
+        <div class="meta">banned ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/necrolyte.png?" alt="" loading="lazy" onerror="this.style.display='none'">Necrophos</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
+        <div class="meta">banned ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/queenofpain.png?" alt="" loading="lazy" onerror="this.style.display='none'">Queen of Pain</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
+        <div class="meta">banned ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/silencer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Silencer</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
+        <div class="meta">banned ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/spectre.png?" alt="" loading="lazy" onerror="this.style.display='none'">Spectre</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
+        <div class="meta">banned ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/techies.png?" alt="" loading="lazy" onerror="this.style.display='none'">Techies</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
+        <div class="meta">banned ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/templar_assassin.png?" alt="" loading="lazy" onerror="this.style.display='none'">Templar Assassin</div>
         <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
         <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/tidehunter.png?" alt="" loading="lazy" onerror="this.style.display='none'">Tidehunter</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
+        <div class="meta">banned ×1</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/viper.png?" alt="" loading="lazy" onerror="this.style.display='none'">Viper</div>
         <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s2)"></div></div>
         <div class="meta">banned ×1</div>
       </div></div>
         <div class="legend-note"><span>what this team removes in the draft · bar = times banned</span></div>
       </div>
       <div class="panel">
-        <h3 id="banAgainstTitle">Banned against them</h3>
+        <h3 id="banAgainstTitle">Banned against us</h3>
         <div id="banAgainst">
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/rubick.png?" alt="" loading="lazy" onerror="this.style.display='none'">Rubick</div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dawnbreaker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Dawnbreaker</div>
         <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--s7)"></div></div>
-        <div class="meta">banned ×4</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/witch_doctor.png?" alt="" loading="lazy" onerror="this.style.display='none'">Witch Doctor</div>
-        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--s7)"></div></div>
-        <div class="meta">banned ×4</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/necrolyte.png?" alt="" loading="lazy" onerror="this.style.display='none'">Necrophos</div>
-        <div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--s7)"></div></div>
         <div class="meta">banned ×3</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/centaur.png?" alt="" loading="lazy" onerror="this.style.display='none'">Centaur Warrunner</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--s7)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/rattletrap.png?" alt="" loading="lazy" onerror="this.style.display='none'">Clockwerk</div>
+        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s7)"></div></div>
         <div class="meta">banned ×2</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/clinkz.png?" alt="" loading="lazy" onerror="this.style.display='none'">Clinkz</div>
-        <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--s7)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/juggernaut.png?" alt="" loading="lazy" onerror="this.style.display='none'">Juggernaut</div>
+        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s7)"></div></div>
         <div class="meta">banned ×2</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/axe.png?" alt="" loading="lazy" onerror="this.style.display='none'">Axe</div>
-        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--s7)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lich.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lich</div>
+        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s7)"></div></div>
+        <div class="meta">banned ×2</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lion.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lion</div>
+        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s7)"></div></div>
+        <div class="meta">banned ×2</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/shadow_shaman.png?" alt="" loading="lazy" onerror="this.style.display='none'">Shadow Shaman</div>
+        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s7)"></div></div>
+        <div class="meta">banned ×2</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/tidehunter.png?" alt="" loading="lazy" onerror="this.style.display='none'">Tidehunter</div>
+        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s7)"></div></div>
+        <div class="meta">banned ×2</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/undying.png?" alt="" loading="lazy" onerror="this.style.display='none'">Undying</div>
+        <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--s7)"></div></div>
+        <div class="meta">banned ×2</div>
+      </div>
+      <div class="hero-row">
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/arc_warden.png?" alt="" loading="lazy" onerror="this.style.display='none'">Arc Warden</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s7)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
         <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/drow_ranger.png?" alt="" loading="lazy" onerror="this.style.display='none'">Drow Ranger</div>
-        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--s7)"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s7)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/legion_commander.png?" alt="" loading="lazy" onerror="this.style.display='none'">Legion Commander</div>
-        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--s7)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/invoker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Invoker</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s7)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lina.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lina</div>
-        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--s7)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/keeper_of_the_light.png?" alt="" loading="lazy" onerror="this.style.display='none'">Keeper of the Light</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s7)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/obsidian_destroyer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Outworld Devourer</div>
-        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--s7)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/life_stealer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lifestealer</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s7)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/pangolier.png?" alt="" loading="lazy" onerror="this.style.display='none'">Pangolier</div>
-        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--s7)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/medusa.png?" alt="" loading="lazy" onerror="this.style.display='none'">Medusa</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s7)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/phantom_lancer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Phantom Lancer</div>
-        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--s7)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/oracle.png?" alt="" loading="lazy" onerror="this.style.display='none'">Oracle</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s7)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/pudge.png?" alt="" loading="lazy" onerror="this.style.display='none'">Pudge</div>
-        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--s7)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/puck.png?" alt="" loading="lazy" onerror="this.style.display='none'">Puck</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s7)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/queenofpain.png?" alt="" loading="lazy" onerror="this.style.display='none'">Queen of Pain</div>
-        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--s7)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/rubick.png?" alt="" loading="lazy" onerror="this.style.display='none'">Rubick</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s7)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/silencer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Silencer</div>
-        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--s7)"></div></div>
+        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/nevermore.png?" alt="" loading="lazy" onerror="this.style.display='none'">Shadow Fiend</div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s7)"></div></div>
         <div class="meta">banned ×1</div>
       </div>
       <div class="hero-row">
         <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/spectre.png?" alt="" loading="lazy" onerror="this.style.display='none'">Spectre</div>
-        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--s7)"></div></div>
-        <div class="meta">banned ×1</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/tidehunter.png?" alt="" loading="lazy" onerror="this.style.display='none'">Tidehunter</div>
-        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--s7)"></div></div>
-        <div class="meta">banned ×1</div>
-      </div>
-      <div class="hero-row">
-        <div class="nm"><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/viper.png?" alt="" loading="lazy" onerror="this.style.display='none'">Viper</div>
-        <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--s7)"></div></div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--s7)"></div></div>
         <div class="meta">banned ×1</div>
       </div></div>
         <div class="legend-note"><span>what opponents ban vs them · their feared picks</span></div>
@@ -594,19 +639,19 @@
     </div>
   </section>
 
-  <section style="display: none;">
+  <section style="">
     <h2>Hero pick table</h2>
-    <p class="h-note" id="heroScopeNote">Heroes your 5 opponents have picked. Click a column to sort.</p>
+    <p class="h-note" id="heroScopeNote">Heroes Herald Royale with Cheese has picked (incl. stand-ins, flagged SUB). Click a column to sort.</p>
     <div class="hero-search">
       <input type="search" id="heroSearch" placeholder="Search hero name…" spellcheck="false" autocomplete="off">
       <button class="ghost" id="unpickedBtn" title="Requires Enrich from OpenDota">+ Unpicked heroes</button>
       <button class="ghost" id="bannedBtn" title="Show heroes that were banned but never picked">+ Banned (unpicked)</button>
       <span class="slider-group" title="Only show heroes picked at least this many times">
         <label for="minMatches">Min matches</label>
-        <input type="range" id="minMatches" min="0" max="5" value="0" step="1">
+        <input type="range" id="minMatches" min="0" max="2" value="0" step="1">
         <span class="sv" id="minMatchesVal">any</span>
       </span>
-      <span class="search-count" id="heroCount">73 shown · 56 picked</span>
+      <span class="search-count" id="heroCount">35 shown · 19 picked</span>
     </div>
     <div class="panel" style="padding-top:6px">
       <table id="heroTable">
@@ -620,456 +665,136 @@
           <th data-k="rating" class="num">Avg rating</th>
           <th data-k="kda" class="num">Avg K/D/A</th>
         </tr></thead>
-        <tbody><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/antimage.png?" alt="" loading="lazy" onerror="this.style.display='none'">Anti-Mage</td>
-      <td class="num">1</td>
+        <tbody><tr class="unpicked">
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/ancient_apparition.png?" alt="" loading="lazy" onerror="this.style.display='none'">Ancient Apparition</td>
       <td class="num">0</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">86.0</td>
-      <td class="num">12.0/0.0/6.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/chaos_knight.png?" alt="" loading="lazy" onerror="this.style.display='none'">Chaos Knight</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">74.0</td>
-      <td class="num">21.0/3.0/13.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/clinkz.png?" alt="" loading="lazy" onerror="this.style.display='none'">Clinkz</td>
-      <td class="num">3</td>
       <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">3</td>
       <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">60.1</td>
-      <td class="num">10.7/3.7/13.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dark_seer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Dark Seer</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill bad">2</span></td>
-      <td class="num">2</td>
       <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">48.5</td>
-      <td class="num">1.5/3.5/18.0</td></tr><tr>
+      <td class="num"><span class="pill mid">—</span></td>
+      <td class="num">—</td>
+      <td class="num">—</td></tr><tr class="unpicked">
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/axe.png?" alt="" loading="lazy" onerror="this.style.display='none'">Axe</td>
+      <td class="num">0</td>
+      <td class="num"><span class="pill bad">1</span></td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num"><span class="pill mid">—</span></td>
+      <td class="num">—</td>
+      <td class="num">—</td></tr><tr>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/centaur.png?" alt="" loading="lazy" onerror="this.style.display='none'">Centaur Warrunner</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">1</span></td>
+      <td class="num">0</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">0%</span></td>
+      <td class="num">24.7</td>
+      <td class="num">2.0/8.0/6.0</td></tr><tr class="unpicked">
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/clinkz.png?" alt="" loading="lazy" onerror="this.style.display='none'">Clinkz</td>
+      <td class="num">0</td>
+      <td class="num"><span class="pill bad">3</span></td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num"><span class="pill mid">—</span></td>
+      <td class="num">—</td>
+      <td class="num">—</td></tr><tr>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/rattletrap.png?" alt="" loading="lazy" onerror="this.style.display='none'">Clockwerk</td>
+      <td class="num">1</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">0%</span></td>
+      <td class="num">41.2</td>
+      <td class="num">4.0/6.0/7.0</td></tr><tr>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dark_willow.png?" alt="" loading="lazy" onerror="this.style.display='none'">Dark Willow</td>
+      <td class="num">1</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">0%</span></td>
+      <td class="num">16.0</td>
+      <td class="num">2.0/5.0/2.0</td></tr><tr>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dawnbreaker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Dawnbreaker</td>
+      <td class="num">1</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">0%</span></td>
+      <td class="num">32.0</td>
+      <td class="num">4.0/5.0/7.0</td></tr><tr>
       <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/drow_ranger.png?" alt="" loading="lazy" onerror="this.style.display='none'">Drow Ranger</td>
       <td class="num">1</td>
-      <td class="num"><span class="pill bad">4</span></td>
-      <td class="num">1</td>
       <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">64.0</td>
-      <td class="num">17.0/4.0/10.0</td></tr><tr>
+      <td class="num">0</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">0%</span></td>
+      <td class="num">6.9</td>
+      <td class="num">1.0/6.0/1.0</td></tr><tr>
       <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/earth_spirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Earth Spirit</td>
       <td class="num">1</td>
-      <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">1</td>
       <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">84.9</td>
-      <td class="num">15.0/2.0/9.0</td></tr><tr>
+      <td class="num">0</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">0%</span></td>
+      <td class="num">10.6</td>
+      <td class="num">3.0/10.0/5.0</td></tr><tr class="unpicked">
       <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/earthshaker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Earthshaker</td>
-      <td class="num">2</td>
       <td class="num">0</td>
-      <td class="num">2</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">91.3</td>
-      <td class="num">3.0/1.0/20.5</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/keeper_of_the_light.png?" alt="" loading="lazy" onerror="this.style.display='none'">Keeper of the Light</td>
-      <td class="num">1</td>
       <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">1</td>
       <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">49.7</td>
-      <td class="num">7.0/4.0/22.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/mars.png?" alt="" loading="lazy" onerror="this.style.display='none'">Mars</td>
-      <td class="num">1</td>
       <td class="num">0</td>
-      <td class="num">1</td>
+      <td class="num"><span class="pill mid">—</span></td>
+      <td class="num">—</td>
+      <td class="num">—</td></tr><tr class="unpicked">
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/hoodwink.png?" alt="" loading="lazy" onerror="this.style.display='none'">Hoodwink</td>
       <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">49.5</td>
-      <td class="num">3.0/4.0/22.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/mirana.png?" alt="" loading="lazy" onerror="this.style.display='none'">Mirana</td>
-      <td class="num">1</td>
+      <td class="num"><span class="pill bad">2</span></td>
       <td class="num">0</td>
-      <td class="num">1</td>
       <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">87.5</td>
-      <td class="num">2.0/2.0/23.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/necrolyte.png?" alt="" loading="lazy" onerror="this.style.display='none'">Necrophos</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill bad">7</span></td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">67.1</td>
-      <td class="num">7.0/3.0/15.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/night_stalker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Night Stalker</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">43.8</td>
-      <td class="num">9.0/7.0/27.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/pudge.png?" alt="" loading="lazy" onerror="this.style.display='none'">Pudge</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">2</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">64.5</td>
-      <td class="num">5.5/4.5/15.5</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/ringmaster.png?" alt="" loading="lazy" onerror="this.style.display='none'">Ringmaster</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">91.0</td>
-      <td class="num">8.0/2.0/24.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/silencer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Silencer</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">85.2</td>
-      <td class="num">3.0/4.0/24.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/techies.png?" alt="" loading="lazy" onerror="this.style.display='none'">Techies</td>
-      <td class="num">2</td>
-      <td class="num">0</td>
-      <td class="num">2</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">74.5</td>
-      <td class="num">6.0/7.0/26.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/templar_assassin.png?" alt="" loading="lazy" onerror="this.style.display='none'">Templar Assassin</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">78.8</td>
-      <td class="num">12.0/1.0/14.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/shredder.png?" alt="" loading="lazy" onerror="this.style.display='none'">Timbersaw</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">71.4</td>
-      <td class="num">10.0/4.0/16.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/tusk.png?" alt="" loading="lazy" onerror="this.style.display='none'">Tusk</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill bad">3</span></td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">75.3</td>
-      <td class="num">9.0/7.0/27.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/ursa.png?" alt="" loading="lazy" onerror="this.style.display='none'">Ursa</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">83.5</td>
-      <td class="num">22.0/4.0/10.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/vengefulspirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Vengeful Spirit</td>
-      <td class="num">2</td>
-      <td class="num">0</td>
-      <td class="num">2</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">75.4</td>
-      <td class="num">8.0/8.0/28.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/viper.png?" alt="" loading="lazy" onerror="this.style.display='none'">Viper</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">2</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">63.9</td>
-      <td class="num">10.5/5.5/17.5</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/warlock.png?" alt="" loading="lazy" onerror="this.style.display='none'">Warlock</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">54.7</td>
-      <td class="num">0.0/9.0/28.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/winter_wyvern.png?" alt="" loading="lazy" onerror="this.style.display='none'">Winter Wyvern</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill good">100%</span></td>
-      <td class="num">72.3</td>
-      <td class="num">6.0/5.0/23.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/life_stealer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lifestealer</td>
-      <td class="num">4</td>
-      <td class="num"><span class="pill bad">3</span></td>
-      <td class="num">3</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill good">75%</span></td>
-      <td class="num">61.7</td>
-      <td class="num">15.8/4.0/12.8</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/jakiro.png?" alt="" loading="lazy" onerror="this.style.display='none'">Jakiro</td>
-      <td class="num">3</td>
-      <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">2</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill good">67%</span></td>
-      <td class="num">66.5</td>
-      <td class="num">4.7/6.7/18.3</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lina.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lina</td>
-      <td class="num">3</td>
-      <td class="num"><span class="pill bad">6</span></td>
-      <td class="num">2</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill good">67%</span></td>
-      <td class="num">52.4</td>
-      <td class="num">11.3/5.3/14.7</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/snapfire.png?" alt="" loading="lazy" onerror="this.style.display='none'">Snapfire</td>
-      <td class="num">3</td>
-      <td class="num"><span class="pill bad">5</span></td>
-      <td class="num">2</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill good">67%</span></td>
-      <td class="num">56.8</td>
-      <td class="num">8.3/6.7/18.3</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/abyssal_underlord.png?" alt="" loading="lazy" onerror="this.style.display='none'">Underlord</td>
-      <td class="num">5</td>
-      <td class="num">0</td>
-      <td class="num">3</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill good">60%</span></td>
-      <td class="num">39.2</td>
-      <td class="num">3.4/8.6/21.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/axe.png?" alt="" loading="lazy" onerror="this.style.display='none'">Axe</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill bad">4</span></td>
-      <td class="num">1</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill mid">50%</span></td>
-      <td class="num">36.7</td>
-      <td class="num">6.5/7.5/12.5</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/ember_spirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Ember Spirit</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill bad">3</span></td>
-      <td class="num">1</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill mid">50%</span></td>
-      <td class="num">67.4</td>
-      <td class="num">13.0/5.0/21.5</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/faceless_void.png?" alt="" loading="lazy" onerror="this.style.display='none'">Faceless Void</td>
-      <td class="num">2</td>
-      <td class="num">0</td>
-      <td class="num">1</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill mid">50%</span></td>
-      <td class="num">51.4</td>
-      <td class="num">9.0/5.0/15.5</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/grimstroke.png?" alt="" loading="lazy" onerror="this.style.display='none'">Grimstroke</td>
-      <td class="num">2</td>
-      <td class="num">0</td>
-      <td class="num">1</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill mid">50%</span></td>
-      <td class="num">38.7</td>
-      <td class="num">4.0/12.0/21.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/gyrocopter.png?" alt="" loading="lazy" onerror="this.style.display='none'">Gyrocopter</td>
-      <td class="num">2</td>
-      <td class="num">0</td>
-      <td class="num">1</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill mid">50%</span></td>
-      <td class="num">34.9</td>
-      <td class="num">9.0/10.5/15.5</td></tr><tr>
+      <td class="num"><span class="pill mid">—</span></td>
+      <td class="num">—</td>
+      <td class="num">—</td></tr><tr>
       <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/invoker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Invoker</td>
       <td class="num">2</td>
-      <td class="num"><span class="pill bad">5</span></td>
-      <td class="num">1</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill mid">50%</span></td>
-      <td class="num">40.9</td>
-      <td class="num">10.5/5.5/15.5</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/pangolier.png?" alt="" loading="lazy" onerror="this.style.display='none'">Pangolier</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
       <td class="num">2</td>
-      <td class="num"><span class="pill bad">1</span></td>
+      <td class="num"><span class="pill bad">0%</span></td>
+      <td class="num">10.5</td>
+      <td class="num">2.5/7.5/5.5</td></tr><tr>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/largo.png?" alt="" loading="lazy" onerror="this.style.display='none'">Largo</td>
       <td class="num">1</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill mid">50%</span></td>
-      <td class="num">40.3</td>
-      <td class="num">6.5/8.0/19.5</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/queenofpain.png?" alt="" loading="lazy" onerror="this.style.display='none'">Queen of Pain</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">1</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill mid">50%</span></td>
-      <td class="num">55.6</td>
-      <td class="num">12.5/6.0/18.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/slardar.png?" alt="" loading="lazy" onerror="this.style.display='none'">Slardar</td>
-      <td class="num">2</td>
+      <td class="num">0</td>
       <td class="num">0</td>
       <td class="num">1</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill mid">50%</span></td>
-      <td class="num">26.4</td>
-      <td class="num">2.5/10.5/17.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/tidehunter.png?" alt="" loading="lazy" onerror="this.style.display='none'">Tidehunter</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill bad">2</span></td>
-      <td class="num">1</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill mid">50%</span></td>
-      <td class="num">28.6</td>
-      <td class="num">2.0/10.5/18.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/undying.png?" alt="" loading="lazy" onerror="this.style.display='none'">Undying</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill bad">9</span></td>
-      <td class="num">1</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill mid">50%</span></td>
-      <td class="num">68.8</td>
-      <td class="num">6.5/6.5/29.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/centaur.png?" alt="" loading="lazy" onerror="this.style.display='none'">Centaur Warrunner</td>
-      <td class="num">3</td>
-      <td class="num"><span class="pill bad">2</span></td>
-      <td class="num">1</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill bad">33%</span></td>
-      <td class="num">32.6</td>
-      <td class="num">5.0/9.0/16.3</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lich.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lich</td>
-      <td class="num">3</td>
-      <td class="num"><span class="pill bad">3</span></td>
-      <td class="num">1</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill bad">33%</span></td>
-      <td class="num">42.3</td>
-      <td class="num">3.3/10.7/15.3</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lion.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lion</td>
-      <td class="num">3</td>
-      <td class="num"><span class="pill bad">2</span></td>
-      <td class="num">1</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill bad">33%</span></td>
-      <td class="num">58.0</td>
-      <td class="num">5.7/6.3/12.3</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/shadow_shaman.png?" alt="" loading="lazy" onerror="this.style.display='none'">Shadow Shaman</td>
-      <td class="num">3</td>
-      <td class="num"><span class="pill bad">3</span></td>
-      <td class="num">1</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill bad">33%</span></td>
-      <td class="num">55.4</td>
-      <td class="num">4.3/9.0/21.3</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/hoodwink.png?" alt="" loading="lazy" onerror="this.style.display='none'">Hoodwink</td>
-      <td class="num">4</td>
-      <td class="num"><span class="pill bad">3</span></td>
-      <td class="num">1</td>
-      <td class="num">3</td>
-      <td class="num"><span class="pill bad">25%</span></td>
-      <td class="num">45.4</td>
-      <td class="num">5.5/8.0/17.3</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/arc_warden.png?" alt="" loading="lazy" onerror="this.style.display='none'">Arc Warden</td>
+      <td class="num"><span class="pill bad">0%</span></td>
+      <td class="num">39.6</td>
+      <td class="num">1.0/4.0/10.0</td></tr><tr class="unpicked">
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/legion_commander.png?" alt="" loading="lazy" onerror="this.style.display='none'">Legion Commander</td>
       <td class="num">0</td>
       <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">0</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill mid">—</span></td>
-      <td class="num">—</td>
-      <td class="num">—</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/bane.png?" alt="" loading="lazy" onerror="this.style.display='none'">Bane</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">0</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill mid">—</span></td>
-      <td class="num">—</td>
-      <td class="num">—</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/bounty_hunter.png?" alt="" loading="lazy" onerror="this.style.display='none'">Bounty Hunter</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">0</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill mid">—</span></td>
-      <td class="num">—</td>
-      <td class="num">—</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/rattletrap.png?" alt="" loading="lazy" onerror="this.style.display='none'">Clockwerk</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill bad">2</span></td>
       <td class="num">0</td>
       <td class="num">0</td>
       <td class="num"><span class="pill mid">—</span></td>
       <td class="num">—</td>
       <td class="num">—</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/crystal_maiden.png?" alt="" loading="lazy" onerror="this.style.display='none'">Crystal Maiden</td>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/life_stealer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lifestealer</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">1</span></td>
+      <td class="num">0</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">0%</span></td>
+      <td class="num">21.1</td>
+      <td class="num">1.0/5.0/6.0</td></tr><tr>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lina.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lina</td>
       <td class="num">1</td>
       <td class="num">0</td>
       <td class="num">0</td>
       <td class="num">1</td>
       <td class="num"><span class="pill bad">0%</span></td>
-      <td class="num">16.9</td>
-      <td class="num">3.0/10.0/10.0</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dawnbreaker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Dawnbreaker</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill bad">5</span></td>
-      <td class="num">0</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill mid">—</span></td>
-      <td class="num">—</td>
-      <td class="num">—</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/disruptor.png?" alt="" loading="lazy" onerror="this.style.display='none'">Disruptor</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num">0</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill bad">0%</span></td>
-      <td class="num">6.4</td>
-      <td class="num">3.0/10.0/8.0</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/enigma.png?" alt="" loading="lazy" onerror="this.style.display='none'">Enigma</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill bad">2</span></td>
-      <td class="num">0</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill mid">—</span></td>
-      <td class="num">—</td>
-      <td class="num">—</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/huskar.png?" alt="" loading="lazy" onerror="this.style.display='none'">Huskar</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill bad">2</span></td>
-      <td class="num">0</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill mid">—</span></td>
-      <td class="num">—</td>
-      <td class="num">—</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/juggernaut.png?" alt="" loading="lazy" onerror="this.style.display='none'">Juggernaut</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill bad">3</span></td>
-      <td class="num">0</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill bad">0%</span></td>
-      <td class="num">42.6</td>
-      <td class="num">9.0/7.0/10.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/luna.png?" alt="" loading="lazy" onerror="this.style.display='none'">Luna</td>
-      <td class="num">1</td>
-      <td class="num">0</td>
-      <td class="num">0</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill bad">0%</span></td>
-      <td class="num">40.8</td>
-      <td class="num">14.0/8.0/8.0</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/marci.png?" alt="" loading="lazy" onerror="this.style.display='none'">Marci</td>
+      <td class="num">29.6</td>
+      <td class="num">0.0/4.0/4.0</td></tr><tr class="unpicked">
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/mirana.png?" alt="" loading="lazy" onerror="this.style.display='none'">Mirana</td>
       <td class="num">0</td>
       <td class="num"><span class="pill bad">1</span></td>
       <td class="num">0</td>
@@ -1077,33 +802,9 @@
       <td class="num"><span class="pill mid">—</span></td>
       <td class="num">—</td>
       <td class="num">—</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/medusa.png?" alt="" loading="lazy" onerror="this.style.display='none'">Medusa</td>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/necrolyte.png?" alt="" loading="lazy" onerror="this.style.display='none'">Necrophos</td>
       <td class="num">0</td>
       <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">0</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill mid">—</span></td>
-      <td class="num">—</td>
-      <td class="num">—</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/nyx_assassin.png?" alt="" loading="lazy" onerror="this.style.display='none'">Nyx Assassin</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill bad">1</span></td>
-      <td class="num">0</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill mid">—</span></td>
-      <td class="num">—</td>
-      <td class="num">—</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/oracle.png?" alt="" loading="lazy" onerror="this.style.display='none'">Oracle</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill bad">3</span></td>
-      <td class="num">0</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill mid">—</span></td>
-      <td class="num">—</td>
-      <td class="num">—</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/obsidian_destroyer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Outworld Devourer</td>
-      <td class="num">0</td>
-      <td class="num"><span class="pill bad">3</span></td>
       <td class="num">0</td>
       <td class="num">0</td>
       <td class="num"><span class="pill mid">—</span></td>
@@ -1111,13 +812,21 @@
       <td class="num">—</td></tr><tr class="unpicked">
       <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/phantom_lancer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Phantom Lancer</td>
       <td class="num">0</td>
-      <td class="num"><span class="pill bad">5</span></td>
+      <td class="num"><span class="pill bad">2</span></td>
       <td class="num">0</td>
       <td class="num">0</td>
       <td class="num"><span class="pill mid">—</span></td>
       <td class="num">—</td>
       <td class="num">—</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/phoenix.png?" alt="" loading="lazy" onerror="this.style.display='none'">Phoenix</td>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/queenofpain.png?" alt="" loading="lazy" onerror="this.style.display='none'">Queen of Pain</td>
+      <td class="num">0</td>
+      <td class="num"><span class="pill bad">1</span></td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num"><span class="pill mid">—</span></td>
+      <td class="num">—</td>
+      <td class="num">—</td></tr><tr class="unpicked">
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/ringmaster.png?" alt="" loading="lazy" onerror="this.style.display='none'">Ring Master</td>
       <td class="num">0</td>
       <td class="num"><span class="pill bad">2</span></td>
       <td class="num">0</td>
@@ -1125,81 +834,113 @@
       <td class="num"><span class="pill mid">—</span></td>
       <td class="num">—</td>
       <td class="num">—</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/puck.png?" alt="" loading="lazy" onerror="this.style.display='none'">Puck</td>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/rubick.png?" alt="" loading="lazy" onerror="this.style.display='none'">Rubick</td>
       <td class="num">0</td>
-      <td class="num"><span class="pill bad">5</span></td>
+      <td class="num"><span class="pill bad">2</span></td>
       <td class="num">0</td>
       <td class="num">0</td>
       <td class="num"><span class="pill mid">—</span></td>
       <td class="num">—</td>
       <td class="num">—</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/riki.png?" alt="" loading="lazy" onerror="this.style.display='none'">Riki</td>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/shadow_demon.png?" alt="" loading="lazy" onerror="this.style.display='none'">Shadow Demon</td>
       <td class="num">1</td>
-      <td class="num"><span class="pill bad">3</span></td>
+      <td class="num">0</td>
       <td class="num">0</td>
       <td class="num">1</td>
       <td class="num"><span class="pill bad">0%</span></td>
-      <td class="num">36.0</td>
-      <td class="num">17.0/10.0/5.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/rubick.png?" alt="" loading="lazy" onerror="this.style.display='none'">Rubick</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill bad">7</span></td>
-      <td class="num">0</td>
-      <td class="num">2</td>
-      <td class="num"><span class="pill bad">0%</span></td>
-      <td class="num">54.6</td>
-      <td class="num">6.5/7.5/18.5</td></tr><tr>
+      <td class="num">20.8</td>
+      <td class="num">1.0/12.0/9.0</td></tr><tr>
       <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/nevermore.png?" alt="" loading="lazy" onerror="this.style.display='none'">Shadow Fiend</td>
       <td class="num">1</td>
-      <td class="num"><span class="pill bad">2</span></td>
+      <td class="num">0</td>
       <td class="num">0</td>
       <td class="num">1</td>
       <td class="num"><span class="pill bad">0%</span></td>
-      <td class="num">66.3</td>
-      <td class="num">16.0/5.0/18.0</td></tr><tr>
+      <td class="num">31.5</td>
+      <td class="num">5.0/7.0/5.0</td></tr><tr>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/silencer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Silencer</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">1</span></td>
+      <td class="num">0</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">0%</span></td>
+      <td class="num">2.2</td>
+      <td class="num">1.0/14.0/4.0</td></tr><tr>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/snapfire.png?" alt="" loading="lazy" onerror="this.style.display='none'">Snapfire</td>
+      <td class="num">1</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">0%</span></td>
+      <td class="num">11.9</td>
+      <td class="num">1.0/10.0/6.0</td></tr><tr>
       <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/spectre.png?" alt="" loading="lazy" onerror="this.style.display='none'">Spectre</td>
       <td class="num">1</td>
-      <td class="num"><span class="pill bad">2</span></td>
+      <td class="num"><span class="pill bad">1</span></td>
       <td class="num">0</td>
       <td class="num">1</td>
       <td class="num"><span class="pill bad">0%</span></td>
-      <td class="num">35.1</td>
-      <td class="num">7.0/7.0/18.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/treant.png?" alt="" loading="lazy" onerror="this.style.display='none'">Treant Protector</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill bad">3</span></td>
+      <td class="num">33.8</td>
+      <td class="num">5.0/6.0/8.0</td></tr><tr class="unpicked">
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/techies.png?" alt="" loading="lazy" onerror="this.style.display='none'">Techies</td>
       <td class="num">0</td>
-      <td class="num">1</td>
-      <td class="num"><span class="pill bad">0%</span></td>
-      <td class="num">32.4</td>
-      <td class="num">1.0/11.0/18.0</td></tr><tr class="unpicked">
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/void_spirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Void Spirit</td>
+      <td class="num"><span class="pill bad">1</span></td>
       <td class="num">0</td>
-      <td class="num"><span class="pill bad">3</span></td>
+      <td class="num">0</td>
+      <td class="num"><span class="pill mid">—</span></td>
+      <td class="num">—</td>
+      <td class="num">—</td></tr><tr class="unpicked">
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/templar_assassin.png?" alt="" loading="lazy" onerror="this.style.display='none'">Templar Assassin</td>
+      <td class="num">0</td>
+      <td class="num"><span class="pill bad">1</span></td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num"><span class="pill mid">—</span></td>
+      <td class="num">—</td>
+      <td class="num">—</td></tr><tr class="unpicked">
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/tidehunter.png?" alt="" loading="lazy" onerror="this.style.display='none'">Tidehunter</td>
+      <td class="num">0</td>
+      <td class="num"><span class="pill bad">1</span></td>
       <td class="num">0</td>
       <td class="num">0</td>
       <td class="num"><span class="pill mid">—</span></td>
       <td class="num">—</td>
       <td class="num">—</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/weaver.png?" alt="" loading="lazy" onerror="this.style.display='none'">Weaver</td>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/tinker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Tinker</td>
       <td class="num">1</td>
       <td class="num">0</td>
       <td class="num">0</td>
       <td class="num">1</td>
       <td class="num"><span class="pill bad">0%</span></td>
-      <td class="num">32.4</td>
-      <td class="num">11.0/10.0/8.0</td></tr><tr>
-      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/windrunner.png?" alt="" loading="lazy" onerror="this.style.display='none'">Windranger</td>
+      <td class="num">13.2</td>
+      <td class="num">3.0/10.0/5.0</td></tr><tr>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/abyssal_underlord.png?" alt="" loading="lazy" onerror="this.style.display='none'">Underlord</td>
       <td class="num">1</td>
       <td class="num">0</td>
       <td class="num">0</td>
       <td class="num">1</td>
       <td class="num"><span class="pill bad">0%</span></td>
-      <td class="num">29.9</td>
-      <td class="num">2.0/11.0/19.0</td></tr><tr class="unpicked">
+      <td class="num">14.6</td>
+      <td class="num">2.0/4.0/3.0</td></tr><tr>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/vengefulspirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Vengeful Spirit</td>
+      <td class="num">1</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">0%</span></td>
+      <td class="num">25.4</td>
+      <td class="num">2.0/12.0/10.0</td></tr><tr>
+      <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/viper.png?" alt="" loading="lazy" onerror="this.style.display='none'">Viper</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">1</span></td>
+      <td class="num">0</td>
+      <td class="num">1</td>
+      <td class="num"><span class="pill bad">0%</span></td>
+      <td class="num">9.8</td>
+      <td class="num">5.0/10.0/3.0</td></tr><tr class="unpicked">
       <td><img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/witch_doctor.png?" alt="" loading="lazy" onerror="this.style.display='none'">Witch Doctor</td>
       <td class="num">0</td>
-      <td class="num"><span class="pill bad">4</span></td>
+      <td class="num"><span class="pill bad">2</span></td>
       <td class="num">0</td>
       <td class="num">0</td>
       <td class="num"><span class="pill mid">—</span></td>
@@ -1209,258 +950,122 @@
     </div>
   </section>
 
-  <section style="display: none;">
-    <h2 id="teamsTitle">Your opponents</h2>
-    <p class="h-note" id="teamsNote">Your 5 direct opponents — core five by position and rating. Stand-ins hidden here; open Team deep-dive to see them.</p>
-    <div class="teams" id="teams"><div class="tcard">
+  <section style="">
+    <h2 id="teamsTitle">Herald Royale with Cheese — our roster</h2>
+    <p class="h-note" id="teamsNote">Our core five by position, plus flagged stand-ins. ★ marks our highest-rated player.</p>
+    <div class="teams" id="teams"><div class="tcard mine">
       <div class="thead">
-        <div class="tname">CATWICE</div>
-        <div class="trec">4–0</div>
-      </div><div class="ttag tag-opp">● Direct opponent</div><div class="plr">
+        <div class="tname">Herald Royale with Cheese</div>
+        <div class="trec">0–4</div>
+      </div><div class="ttag tag-mine">◆ Your team</div><div class="plr">
       <div class="pl-top">
         <div class="pl-name">
           <span class="pos-tag" title="Pos 1 · Carry">Pos 1</span>
-          Pyro.png
+          Static Raindrop
           
         </div>
-        <div class="pl-rt"><span class="pill good">72.8</span> · 4-0</div>
+        <div class="pl-rt"><span class="pill bad">23.3</span> · 0-4</div>
       </div>
-      </div><div class="plr">
+      <div class="pl-games">
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Spectre" title="Spectre — Loss — 33.8 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/spectre.png?" alt="" loading="lazy" onerror="this.style.display='none'">Spectre <span class="kda">5/6/8</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Lifestealer" title="Lifestealer — Loss — 21.1 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/life_stealer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lifestealer <span class="kda">1/5/6</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Drow Ranger" title="Drow Ranger — Loss — 6.9 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/drow_ranger.png?" alt="" loading="lazy" onerror="this.style.display='none'">Drow Ranger <span class="kda">1/6/1</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Shadow Fiend" title="Shadow Fiend — Loss — 31.5 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/nevermore.png?" alt="" loading="lazy" onerror="this.style.display='none'">Shadow Fiend <span class="kda">5/7/5</span>
+        </span></div></div><div class="plr">
       <div class="pl-top">
         <div class="pl-name">
           <span class="pos-tag" title="Pos 2 · Mid">Pos 2</span>
-          Lushless
+          白い空-
           
         </div>
-        <div class="pl-rt"><span class="pill good">66.9</span> · 4-0</div>
+        <div class="pl-rt"><span class="pill bad">11.2</span> · 0-4</div>
       </div>
-      </div><div class="plr">
+      <div class="pl-games">
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Invoker" title="Invoker — Loss — 18.2 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/invoker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Invoker <span class="kda">4/8/7</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Tinker" title="Tinker — Loss — 13.2 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/tinker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Tinker <span class="kda">3/10/5</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Invoker" title="Invoker — Loss — 2.8 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/invoker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Invoker <span class="kda">1/7/4</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Earth Spirit" title="Earth Spirit — Loss — 10.6 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/earth_spirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Earth Spirit <span class="kda">3/10/5</span>
+        </span></div></div><div class="plr">
       <div class="pl-top">
         <div class="pl-name">
           <span class="pos-tag" title="Pos 3 · Offlane">Pos 3</span>
-          RaTatouille
+          Cynical
           
         </div>
-        <div class="pl-rt"><span class="pill good">49.8</span> · 4-0</div>
+        <div class="pl-rt"><span class="pill bad">20.3</span> · 0-4</div>
       </div>
-      </div><div class="plr">
+      <div class="pl-games">
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Dawnbreaker" title="Dawnbreaker — Loss — 32 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dawnbreaker.png?" alt="" loading="lazy" onerror="this.style.display='none'">Dawnbreaker <span class="kda">4/5/7</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Viper" title="Viper — Loss — 9.8 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/viper.png?" alt="" loading="lazy" onerror="this.style.display='none'">Viper <span class="kda">5/10/3</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Underlord" title="Underlord — Loss — 14.6 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/abyssal_underlord.png?" alt="" loading="lazy" onerror="this.style.display='none'">Underlord <span class="kda">2/4/3</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Centaur Warrunner" title="Centaur Warrunner — Loss — 24.7 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/centaur.png?" alt="" loading="lazy" onerror="this.style.display='none'">Centaur Warrunner <span class="kda">2/8/6</span>
+        </span></div></div><div class="plr">
       <div class="pl-top">
         <div class="pl-name">
           <span class="pos-tag" title="Pos 4 · Soft support">Pos 4</span>
-          <span class="star">★</span> certified turtle
+          <span class="star">★</span> A Lazy Bunny
           <span class="pl-key">TOP</span>
         </div>
-        <div class="pl-rt"><span class="pill good">81.7</span> · 4-0</div>
+        <div class="pl-rt"><span class="pill bad">31.6</span> · 0-4</div>
       </div>
-      </div><div class="plr">
+      <div class="pl-games">
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Largo" title="Largo — Loss — 39.6 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/largo.png?" alt="" loading="lazy" onerror="this.style.display='none'">Largo <span class="kda">1/4/10</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Clockwerk" title="Clockwerk — Loss — 41.2 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/rattletrap.png?" alt="" loading="lazy" onerror="this.style.display='none'">Clockwerk <span class="kda">4/6/7</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Lina" title="Lina — Loss — 29.6 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/lina.png?" alt="" loading="lazy" onerror="this.style.display='none'">Lina <span class="kda">0/4/4</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Dark Willow" title="Dark Willow — Loss — 16 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dark_willow.png?" alt="" loading="lazy" onerror="this.style.display='none'">Dark Willow <span class="kda">2/5/2</span>
+        </span></div></div><div class="plr">
       <div class="pl-top">
         <div class="pl-name">
           <span class="pos-tag" title="Pos 5 · Hard support">Pos 5</span>
-          Scardrone
+          Mollask
           
         </div>
-        <div class="pl-rt"><span class="pill good">80.5</span> · 4-0</div>
+        <div class="pl-rt"><span class="pill bad">15.1</span> · 0-4</div>
       </div>
-      </div></div><div class="tcard">
-      <div class="thead">
-        <div class="tname">Chutney Smugglers</div>
-        <div class="trec">2–2</div>
-      </div><div class="ttag tag-opp">● Direct opponent</div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 1 · Carry">Pos 1</span>
-          Firing Blanks
-          
-        </div>
-        <div class="pl-rt"><span class="pill mid">55.9</span> · 2-2</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 2 · Mid">Pos 2</span>
-          Aeletzio
-          
-        </div>
-        <div class="pl-rt"><span class="pill mid">34.5</span> · 2-2</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 3 · Offlane">Pos 3</span>
-          Butterlopper
-          
-        </div>
-        <div class="pl-rt"><span class="pill mid">23.7</span> · 2-2</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 4 · Soft support">Pos 4</span>
-          <span class="star">★</span> Mr Petchef
-          <span class="pl-key">TOP</span>
-        </div>
-        <div class="pl-rt"><span class="pill mid">61.9</span> · 2-2</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 5 · Hard support">Pos 5</span>
-          Xania
-          
-        </div>
-        <div class="pl-rt"><span class="pill mid">49.4</span> · 2-2</div>
-      </div>
-      </div></div><div class="tcard">
-      <div class="thead">
-        <div class="tname">D2Ire Rejects</div>
-        <div class="trec">1–3</div>
-      </div><div class="ttag tag-opp">● Direct opponent</div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 1 · Carry">Pos 1</span>
-          pROMiKe (º•)
-          
-        </div>
-        <div class="pl-rt"><span class="pill bad">43.2</span> · 1-3</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 2 · Mid">Pos 2</span>
-          <span class="star">★</span> Psycho Melendez
-          <span class="pl-key">TOP</span>
-        </div>
-        <div class="pl-rt"><span class="pill bad">50.6</span> · 1-3</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 3 · Offlane">Pos 3</span>
-          Chipmonk
-          
-        </div>
-        <div class="pl-rt"><span class="pill bad">23.6</span> · 1-3</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 4 · Soft support">Pos 4</span>
-          barjakun is back
-          
-        </div>
-        <div class="pl-rt"><span class="pill bad">33.9</span> · 1-3</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 5 · Hard support">Pos 5</span>
-          that normie kid
-          
-        </div>
-        <div class="pl-rt"><span class="pill bad">42.3</span> · 1-3</div>
-      </div>
-      </div></div><div class="tcard">
-      <div class="thead">
-        <div class="tname">No Sweat</div>
-        <div class="trec">1–3</div>
-      </div><div class="ttag tag-opp">● Direct opponent</div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 1 · Carry">Pos 1</span>
-          Nobody's Perfect
-          
-        </div>
-        <div class="pl-rt"><span class="pill bad">58.4</span> · 1-3</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 2 · Mid">Pos 2</span>
-          maia
-          
-        </div>
-        <div class="pl-rt"><span class="pill bad">46.3</span> · 1-3</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 3 · Offlane">Pos 3</span>
-          EmperorMonkey
-          
-        </div>
-        <div class="pl-rt"><span class="pill bad">46.5</span> · 1-3</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 4 · Soft support">Pos 4</span>
-          <span class="star">★</span> Maddie
-          <span class="pl-key">TOP</span>
-        </div>
-        <div class="pl-rt"><span class="pill bad">60.0</span> · 1-3</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 5 · Hard support">Pos 5</span>
-          inky
-          
-        </div>
-        <div class="pl-rt"><span class="pill bad">43.3</span> · 1-3</div>
-      </div>
-      </div></div><div class="tcard">
-      <div class="thead">
-        <div class="tname">FarmVille<span class="sub-tag" title="1 stand-in name(s) seen — view in Team deep-dive">1 SUB</span></div>
-        <div class="trec">4–0</div>
-      </div><div class="ttag tag-opp">● Direct opponent</div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 1 · Carry">Pos 1</span>
-          EbolaBear
-          
-        </div>
-        <div class="pl-rt"><span class="pill good">62.1</span> · 4-0</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 2 · Mid">Pos 2</span>
-          akim
-          
-        </div>
-        <div class="pl-rt"><span class="pill good">63.9</span> · 4-0</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 3 · Offlane">Pos 3</span>
-          Chromozones
-          
-        </div>
-        <div class="pl-rt"><span class="pill good">55.8</span> · 2-0</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 4 · Soft support">Pos 4</span>
-          Luke
-          
-        </div>
-        <div class="pl-rt"><span class="pill good">66.7</span> · 4-0</div>
-      </div>
-      </div><div class="plr">
-      <div class="pl-top">
-        <div class="pl-name">
-          <span class="pos-tag" title="Pos 5 · Hard support">Pos 5</span>
-          <span class="star">★</span> Karenlyl
-          <span class="pl-key">TOP</span>
-        </div>
-        <div class="pl-rt"><span class="pill good">71.6</span> · 4-0</div>
-      </div>
-      </div></div></div>
+      <div class="pl-games">
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Vengeful Spirit" title="Vengeful Spirit — Loss — 25.4 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/vengefulspirit.png?" alt="" loading="lazy" onerror="this.style.display='none'">Vengeful Spirit <span class="kda">2/12/10</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Snapfire" title="Snapfire — Loss — 11.9 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/snapfire.png?" alt="" loading="lazy" onerror="this.style.display='none'">Snapfire <span class="kda">1/10/6</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Silencer" title="Silencer — Loss — 2.2 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/silencer.png?" alt="" loading="lazy" onerror="this.style.display='none'">Silencer <span class="kda">1/14/4</span>
+        </span>
+        <span class="g-chip exp loss" data-team="herald royale with cheese" data-hero="Shadow Demon" title="Shadow Demon — Loss — 20.8 rating — click for items">
+          <img class="hicon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/shadow_demon.png?" alt="" loading="lazy" onerror="this.style.display='none'">Shadow Demon <span class="kda">1/12/9</span>
+        </span></div></div><div class="tpool"><b>Hero pool (19):</b> Spectre, Lifestealer, Drow Ranger, Shadow Fiend, Invoker, Tinker, Earth Spirit, Dawnbreaker, Viper, Underlord, Centaur Warrunner, Largo, Clockwerk, Lina, Dark Willow, Vengeful Spirit, Snapfire, Silencer, Shadow Demon</div></div></div>
   </section>
 
-  <details class="data" open="" style="display: none;">
+  <details class="data" open="" style="">
     <summary>Add / update match data — paste future days here</summary>
     <p class="data-msg">Paste new match blocks in the same format the league bot posts (they append to what's already here). Then press <b>Update</b> to recompute, and <b>Download updated</b> above to save one file with all days baked in.</p>
     <textarea id="rawInput" spellcheck="false"></textarea>
@@ -1470,7 +1075,7 @@
     </div>
   </details>
 
-  <section id="pubsView" style="">
+  <section id="pubsView" style="display: none;">
     <div class="tiles" id="pubsTiles"><div class="tile"><div class="v">4–5</div><div class="k">our pub record</div></div><div class="tile"><div class="v">9</div><div class="k">games logged</div></div><div class="tile"><div class="v">39</div><div class="k">heroes we've picked</div></div><div class="tile"><div class="v">34</div><div class="k">enemy heroes faced</div></div></div>
 
     <div class="hero-search" style="margin-bottom:16px">
@@ -2713,7 +2318,7 @@ Mollask: Silencer 1/14/4  2.2 rating
 
 Match 8953084282 parsed in league SecretLeague 
 
-#DOTA_GoodGuys [L]
+SLOB TEAM [L]
 craitho: Drow Ranger 5/6/6  40.3 rating
 main menu enjoyer: Dragon Knight 7/7/7  33.8 rating
 Thunderdyne: Tidehunter 1/5/12  42.0 rating
